@@ -21,9 +21,10 @@ public class PiezaController {
 	
 	@GetMapping("/list")
 	public String list(Model model) {
-		List<Pieza> piezas = service.getAll();		
-		model.addAttribute("piezas",piezas);
+		List<Pieza> piezas = service.getAll();	
 		
+		model.addAttribute("piezas",piezas);
+				
 		return "Piezas";
 	}
 

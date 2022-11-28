@@ -21,6 +21,7 @@ public class ResidenciaController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		List<Residencia> residencias = service.getAll();
+
 		
 		model.addAttribute("residencias",residencias);
 		

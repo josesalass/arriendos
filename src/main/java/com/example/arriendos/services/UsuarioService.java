@@ -10,4 +10,6 @@ public interface UsuarioService {
 
 	List<Usuario> getAll();
 
+	void save(Usuario user);
+
 }

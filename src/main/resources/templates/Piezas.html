@@ -7,12 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+    
+    	
         td{
             font-size: 14px;
         }
         
         .row{
             margin-bottom: 2em;
+        }
+        
+        .col-4{
+        	margin-bottom: 2em !important;
         }
 
         .card-img-top{
@@ -22,6 +28,11 @@
         .card-body{
             height: 10em;
         }
+        
+        header{
+        	background-color: #a8d5e5;
+        }
+        
 
         .card-footer{
             font-size: 10px;
@@ -40,16 +51,15 @@
                     </a>
             
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/Residencias.html" class="nav-link px-2 link-dark">Residencias</a></li>
-                        <li><a href="#" class="nav-link px-2 link-secondary">Piezas</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+                        <li><a th:href="@{../residencia/list}" class="nav-link px-2 link-dark">Residencias</a></li>
+                        <li><a th:href="@{../piezas/list}" class="nav-link px-2 link-secondary">Piezas</a></li>
+         
                     </ul>
             
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                       <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
-                    <a href="/Perfil.html" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a th:href="@{../usuario/user}" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                   </div>
@@ -79,31 +89,31 @@
 
         <!--MINIATURAS-->
         <div class="row">
-            <div class="col">
+            <div th:each="pieza: ${piezas}" class="col-4">
                 <div class="card">
                     <img class="card-img-top" src="https://picsum.photos/900">
                     <div class="card-body">
                         <table>
                             <tr>
                                 <td colspan="2">Dirección</td>
-                                <td></td>
+                                <td th:text="${pieza.residencia.direccion}"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Espacio</td>
-                                <td>3 mt2</td>
+                                <td th:text="${pieza.espacio}"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Descripción</td>
-                                <td>Baño privado</td>
+                                <td th:text="${pieza.descripcion}" >Baño privado</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Restricciones</td>
-                                <td>Solo hombres</td>
+                                <td th:text="${pieza.residencia.reestriccion1}"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="card-footer">
-                        Fecha publicación: 12/12/2021
+                        Fecha publicación: <span th:text="${pieza.residencia.fechaPub}"></span>
                     </div>
                 </div>
             </div>

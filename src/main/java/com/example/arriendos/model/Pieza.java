@@ -21,29 +21,35 @@ public class Pieza {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotNull
+    /*@NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_residencia", nullable = false)
-    private Residencia idResidencia;
+    private Residencia idResidencia;*/
 
     @NotNull
     @Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
+    
     @NotNull
     @Column(name = "espacio", nullable = false)
     private Integer espacio;
+    
+    @NotNull
+    @Column(name = "precio")
+    private Integer precio;
 
     @NotNull
     @Lob
     @Column(name = "img", nullable = false)
     private String img;
+    
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_residencia", nullable = false)
-    private Pieza pieza;
+    private Residencia residencia;
 
     @ManyToMany
     @JoinTable(
@@ -61,6 +67,64 @@ public class Pieza {
         categoriasPiezas.remove(categoria);
         categoria.getPiezas().remove(this);
     }
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Integer getEspacio() {
+		return espacio;
+	}
+
+	public void setEspacio(Integer espacio) {
+		this.espacio = espacio;
+	}
+
+	public Integer getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Integer precio) {
+		this.precio = precio;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public Residencia getResidencia() {
+		return residencia;
+	}
+
+	public void setResidencia(Residencia residencia) {
+		this.residencia = residencia;
+	}
+
+	public List<Categoria> getCategoriasPiezas() {
+		return categoriasPiezas;
+	}
+
+	public void setCategoriasPiezas(List<Categoria> categoriasPiezas) {
+		this.categoriasPiezas = categoriasPiezas;
+	}
+    
+    
 
 
 

@@ -38,7 +38,6 @@ public class Usuario {
     @Column(name = "nacimiento", nullable = false, length = 10)
     private String nacimiento;
 
-    @NotNull
     @Lob
     @Column(name = "img", nullable = false)
     private String img;

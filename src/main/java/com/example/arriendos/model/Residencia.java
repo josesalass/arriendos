@@ -22,30 +22,25 @@ public class Residencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario idUsuario;
 
     @NotNull
     @Lob
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
-    @NotNull
+
     @Lob
-    @Column(name = "reestriccion1", nullable = false)
+    @Column(name = "reestriccion1")
     private String reestriccion1;
 
-    @NotNull
+
     @Lob
-    @Column(name = "reestriccion2", nullable = false)
+    @Column(name = "reestriccion2")
     private String reestriccion2;
 
-    @NotNull
+
     @Lob
-    @Column(name = "reestriccion3", nullable = false)
+    @Column(name = "reestriccion3")
     private String reestriccion3;
 
     @NotNull
@@ -67,10 +62,88 @@ public class Residencia {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
-    @OneToMany(mappedBy="pieza", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="residencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Pieza> piezas;
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getReestriccion1() {
+		return reestriccion1;
+	}
+
+	public void setReestriccion1(String reestriccion1) {
+		this.reestriccion1 = reestriccion1;
+	}
+
+	public String getReestriccion2() {
+		return reestriccion2;
+	}
+
+	public void setReestriccion2(String reestriccion2) {
+		this.reestriccion2 = reestriccion2;
+	}
+
+	public String getReestriccion3() {
+		return reestriccion3;
+	}
+
+	public void setReestriccion3(String reestriccion3) {
+		this.reestriccion3 = reestriccion3;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+
+	public String getFechaPub() {
+		return fechaPub;
+	}
+
+	public void setFechaPub(String fechaPub) {
+		this.fechaPub = fechaPub;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<Pieza> getPiezas() {
+		return piezas;
+	}
+
+	public void setPiezas(List<Pieza> piezas) {
+		this.piezas = piezas;
+	}
 
 
 

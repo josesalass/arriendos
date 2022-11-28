@@ -24,6 +24,11 @@
             font-size: 10px;
             text-align: center;
         }
+        
+         header{
+        	background-color: #a8d5e5;
+        }
+        
     </style>
 </head>
 <body>
@@ -38,22 +43,27 @@
             
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                       <li><a href="#" class="nav-link px-2 link-secondary">Residencias</a></li>
-                      <li><a href="/Piezas.html" class="nav-link px-2 link-dark">Piezas</a></li>
-                      <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-                      <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+                      <li><a th:href="@{../piezas/list}" class="nav-link px-2 link-dark">Piezas</a></li>
                     </ul>
             
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                       <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
             
-                    <a href="/Perfil.html" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a th:href="@{../usuario/user}" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                   </div>
                 </div>
               </header>
             
+        </div>
+        
+        <div class="row d-flex flex-row-reverse">
+        	<div class="col-2">
+        		<a class="btn btn-primary" >Nueva residencia</a>
+        	</div>
+        	
         </div>
 
         <div class="row d-flex align-items-start justify-content-left">
@@ -76,7 +86,7 @@
 
         <!--MINIATURAS-->
         <div class="row">
-            <div class="col" th:each="resi ${residencias}">
+            <div class="col" th:each="resi: ${residencias}">
                 <div class="card">
                     <img class="card-img-top" src="https://picsum.photos/900">
                     <div class="card-body">
@@ -87,7 +97,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2">Cantidad de piezas</td>
-                                <td></td>
+                                <td th:text="${resi.piezas.size()}"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Descripción</td>
@@ -106,7 +116,7 @@
                     </div>
                     <div class="card-footer">
                         Fecha publicación:
-                        <p th:text="${resi.fechaPub}">
+                        <span th:text="${resi.fechaPub}"></span>
                     </div>
                 </div>
             </div>

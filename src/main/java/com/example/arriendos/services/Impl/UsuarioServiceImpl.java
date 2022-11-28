@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.arriendos.model.Usuario;
+import com.example.arriendos.repositories.ResidenciaRepository;
 import com.example.arriendos.repositories.UsuarioRepository;
 
 @Service
@@ -15,6 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Autowired
 	UsuarioRepository repository;
 	
+		
 	@Override
 	public List<Usuario> getAll(){
 		return repository.findAll();
@@ -23,6 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public Usuario getById(String rut){
 		return repository.getReferenceById(rut);
+	}
+	
+	@Override
+	public void save(Usuario user) {
+		repository.save(user);
 	}
 
 }
