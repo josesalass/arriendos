@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            font-size: 14px;
+        }
+        
+        .row{
+            margin-bottom: 2em;
+        }
+
+        .card-img-top{
+            width: 100%;
+            height: 15em;
+        }
+
+        .card-footer{
+            font-size: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm">
+        <div class="row">
+            <header class="p-3 mb-3 border-bottom">
+                <div class="container">
+                  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                      <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                    </a>
+            
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                      <li><a href="#" class="nav-link px-2 link-secondary">Residencias</a></li>
+                      <li><a href="/Piezas.html" class="nav-link px-2 link-dark">Piezas</a></li>
+                      <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+                      <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+                    </ul>
+            
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    </form>
+            
+                    <a href="/Perfil.html" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                  </div>
+                </div>
+              </header>
+            
+        </div>
+
+        <div class="row d-flex align-items-start justify-content-left">
+            <div class="col-2">
+                Ordenar Por:
+            </div>
+
+            <div class="col-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Ordenar por</option>
+                    <option value="1">Disponibilidad</option>
+                    <option value="2">Fecha publicación</option>
+                </select>
+            </div>
+            
+
+        </div>
+
+
+
+        <!--MINIATURAS-->
+        <div class="row">
+            <div class="col" th:each="resi ${residencias}">
+                <div class="card">
+                    <img class="card-img-top" src="https://picsum.photos/900">
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <td colspan="2">Dirección</td>
+                                <td th:text="${resi.direccion}"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Cantidad de piezas</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Descripción</td>
+                                <td th:text="${resi.descripcion}"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Restricciones</td>
+                                <td th:text="${resi.reestriccion1}"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Institucion</td>
+                                <td th:if="${resi.institucion} == null">Sin asociación</td>
+                                <td th:if="${resi.institucion} != null" th:text="${resi.institucion}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        Fecha publicación:
+                        <p th:text="${resi.fechaPub}">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        
+        
+    </div>
+        
+</body>
+</html>

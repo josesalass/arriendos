@@ -18,8 +18,21 @@ public class Categoria {
     @NotNull
     @Column(name = "nombre", nullable = false, length = 200)
     private String nombre;
+    
+    
 
-    public Integer getId() {
+    public Categoria() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Categoria(Integer id, @Size(max = 200) @NotNull String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	public Integer getId() {
         return id;
     }
 

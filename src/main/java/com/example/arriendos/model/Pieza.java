@@ -31,8 +31,25 @@ public class Pieza {
     @Lob
     @Column(name = "img", nullable = false)
     private String img;
+    
+    
 
-    public Integer getId() {
+    public Pieza() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Pieza(Integer id, @NotNull Residencia idResidencia, @NotNull String descripcion, @NotNull Integer espacio,
+			@NotNull String img) {
+		super();
+		this.id = id;
+		this.idResidencia = idResidencia;
+		this.descripcion = descripcion;
+		this.espacio = espacio;
+		this.img = img;
+	}
+
+	public Integer getId() {
         return id;
     }
 

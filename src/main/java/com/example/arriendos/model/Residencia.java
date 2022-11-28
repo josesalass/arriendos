@@ -47,8 +47,37 @@ public class Residencia {
     @Lob
     @Column(name = "institucion", nullable = false)
     private String institucion;
+    
+    @NotNull
+    @Lob
+    @Column(name = "fecha_pub")
+    private String fechaPub;
+    
+    
+    
 
-    public Integer getId() {
+
+	public Residencia() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Residencia(Integer id, @NotNull Usuario idUsuario, @NotNull String direccion, @NotNull String reestriccion1,
+			@NotNull String reestriccion2, @NotNull String reestriccion3, @NotNull String descripcion,
+			@NotNull String institucion, @NotNull String fechaPub) {
+		super();
+		this.id = id;
+		this.idUsuario = idUsuario;
+		this.direccion = direccion;
+		this.reestriccion1 = reestriccion1;
+		this.reestriccion2 = reestriccion2;
+		this.reestriccion3 = reestriccion3;
+		this.descripcion = descripcion;
+		this.institucion = institucion;
+		this.fechaPub = fechaPub;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -111,5 +140,15 @@ public class Residencia {
     public void setInstitucion(String institucion) {
         this.institucion = institucion;
     }
+
+	public String getFechaPub() {
+		return fechaPub;
+	}
+
+	public void setFechaPub(String fechaPub) {
+		this.fechaPub = fechaPub;
+	}
+    
+    
 
 }
