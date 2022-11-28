@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -40,6 +42,9 @@ public class Usuario {
     @Lob
     @Column(name = "img", nullable = false)
     private String img;
+
+    @OneToMany(mappedBy="usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Residencia> residencias;
 
     
     

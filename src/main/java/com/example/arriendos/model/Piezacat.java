@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-@Entity
 @Table(name = "piezacat")
 public class Piezacat {
     @NotNull

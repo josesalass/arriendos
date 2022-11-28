@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.arriendos.model.Residencia;
-import com.example.arriendos.services.ResidenciaServiceImpl;
+import com.example.arriendos.services.Impl.ResidenciaServiceImpl;
 
 @RequestMapping("/residencia")
 @Controller

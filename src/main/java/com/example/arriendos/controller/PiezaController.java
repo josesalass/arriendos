@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.arriendos.model.Pieza;
-import com.example.arriendos.services.PiezaServiceImpl;
+import com.example.arriendos.services.Impl.PiezaServiceImpl;
 
 
 @RequestMapping("/piezas")

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.arriendos.model.Usuario;
-import com.example.arriendos.services.UsuarioServiceImpl;
+import com.example.arriendos.services.Impl.UsuarioServiceImpl;
 
 @RequestMapping("/usuario")
 @Controller

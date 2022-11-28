@@ -2,10 +2,19 @@ package com.example.arriendos.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "pieza")
 public class Pieza {
     @Id
@@ -31,62 +40,29 @@ public class Pieza {
     @Lob
     @Column(name = "img", nullable = false)
     private String img;
-    
-    
 
-    public Pieza() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_residencia", nullable = false)
+    private Pieza pieza;
 
-	public Pieza(Integer id, @NotNull Residencia idResidencia, @NotNull String descripcion, @NotNull Integer espacio,
-			@NotNull String img) {
-		super();
-		this.id = id;
-		this.idResidencia = idResidencia;
-		this.descripcion = descripcion;
-		this.espacio = espacio;
-		this.img = img;
-	}
+    @ManyToMany
+    @JoinTable(
+            name = "piezacat",
+            joinColumns = @JoinColumn(name = "id_pieza"),
+            inverseJoinColumns = @JoinColumn(name = "id_categoria"))
+    List<Categoria> categoriasPiezas = new ArrayList<>();
 
-	public Integer getId() {
-        return id;
+    public void addCategoria(Categoria categoria) {
+        categoriasPiezas.add(categoria);
+        categoria.getPiezas().add(this);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void removeCategoria(Categoria categoria) {
+        categoriasPiezas.remove(categoria);
+        categoria.getPiezas().remove(this);
     }
 
-    public Residencia getIdResidencia() {
-        return idResidencia;
-    }
 
-    public void setIdResidencia(Residencia idResidencia) {
-        this.idResidencia = idResidencia;
-    }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getEspacio() {
-        return espacio;
-    }
-
-    public void setEspacio(Integer espacio) {
-        this.espacio = espacio;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 
 }

@@ -1,7 +1,8 @@
-package com.example.arriendos.services;
+package com.example.arriendos.services.Impl;
 
 import java.util.List;
 
+import com.example.arriendos.services.PiezaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
