@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -31,17 +32,17 @@ public class Residencia {
 
     @Lob
     @Column(name = "reestriccion1")
-    private String reestriccion1;
+    private Boolean reestriccion1;
 
 
     @Lob
     @Column(name = "reestriccion2")
-    private String reestriccion2;
+    private Boolean reestriccion2;
 
 
     @Lob
     @Column(name = "reestriccion3")
-    private String reestriccion3;
+    private Boolean reestriccion3;
 
     @NotNull
     @Lob
@@ -56,10 +57,11 @@ public class Residencia {
     @NotNull
     @Lob
     @Column(name = "fecha_pub")
-    private String fechaPub;
+    private Date fechaPub;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
+	// private String id_usuario;
     private Usuario usuario;
 
     @OneToMany(mappedBy="residencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -81,27 +83,27 @@ public class Residencia {
 		this.direccion = direccion;
 	}
 
-	public String getReestriccion1() {
+	public Boolean getReestriccion1() {
 		return reestriccion1;
 	}
 
-	public void setReestriccion1(String reestriccion1) {
+	public void setReestriccion1(Boolean reestriccion1) {
 		this.reestriccion1 = reestriccion1;
 	}
 
-	public String getReestriccion2() {
+	public Boolean getReestriccion2() {
 		return reestriccion2;
 	}
 
-	public void setReestriccion2(String reestriccion2) {
+	public void setReestriccion2(Boolean reestriccion2) {
 		this.reestriccion2 = reestriccion2;
 	}
 
-	public String getReestriccion3() {
+	public Boolean getReestriccion3() {
 		return reestriccion3;
 	}
 
-	public void setReestriccion3(String reestriccion3) {
+	public void setReestriccion3(Boolean reestriccion3) {
 		this.reestriccion3 = reestriccion3;
 	}
 
@@ -121,16 +123,16 @@ public class Residencia {
 		this.institucion = institucion;
 	}
 
-	public String getFechaPub() {
+	public Date getFechaPub() {
 		return fechaPub;
 	}
 
-	public void setFechaPub(String fechaPub) {
+	public void setFechaPub(Date fechaPub) {
 		this.fechaPub = fechaPub;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public String getUsuario() {
+		return this.usuario.getId();
 	}
 
 	public void setUsuario(Usuario usuario) {

@@ -7,5 +7,6 @@ import com.example.arriendos.model.Residencia;
 public interface ResidenciaService {
 
 	List<Residencia> getAll();
+	Residencia guardarResidencia(Residencia residencia);
 
 }
