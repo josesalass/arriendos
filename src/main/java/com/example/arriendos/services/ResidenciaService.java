@@ -10,4 +10,7 @@ public interface ResidenciaService {
 	Residencia guardarResidencia(Residencia residencia);
     Residencia findResidenciaById(Integer id);
     void editarResidencia(Residencia residencia);
+
+
+    void eliminarResidencia(Integer id);
 }

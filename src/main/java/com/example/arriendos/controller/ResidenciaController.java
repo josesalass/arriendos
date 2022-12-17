@@ -2,6 +2,7 @@ package com.example.arriendos.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,24 +40,32 @@ public class ResidenciaController {
 	@PostMapping("/create")
 	public String create(Residencia residencia, Model model) {
 		residenciaService.guardarResidencia(residencia);
-		return "Residencias";
+		return "redirect:/residencia";
 	}
 
 	//lleva a la pagina editResidencia
 	@GetMapping("/edit/{id}")
 	public String mostrarEdit(@PathVariable(name="id")Integer id, Model model){
 		System.out.println("id: "+id);
-		Residencia residencia2 = residenciaService.findResidenciaById(id);
-		model.addAttribute("residencia",residencia2);
+		Residencia residencia = residenciaService.findResidenciaById(id);
+		model.addAttribute("residencia",residencia);
 		return "editResidencia";
 	}
 
 	//edita la residencia
 	@PostMapping("/update/{id}")
-	public String edit(Residencia residencia2, Model model) {
+	public String edit(@Valid Residencia residencia2, Model model) {
 		residenciaService.editarResidencia(residencia2);
-		return "Residencias";
+		return "redirect:/residencia";
 	}
+
+	//elimina la residencia
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable(name="id")Integer id, Model model) {
+		residenciaService.eliminarResidencia(id);
+		return "redirect:/residencia";
+	}
+
 
 	
 	

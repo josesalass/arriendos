@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -57,6 +58,7 @@ public class Residencia {
     @NotNull
     @Lob
     @Column(name = "fecha_pub")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaPub;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

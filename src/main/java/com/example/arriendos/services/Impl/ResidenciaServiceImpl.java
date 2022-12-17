@@ -54,8 +54,13 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 
 	@Override
 	public void editarResidencia(Residencia residencia) {
-		
-		System.out.println("residencia en Service: "+ residencia);
+		Usuario newUser = usuarioService.getById("20077281-4");
+		residencia.setUsuario(newUser);
 		residenciaRepository.save(residencia);
+	}
+
+	@Override
+	public void eliminarResidencia(Integer id) {
+		residenciaRepository.deleteById(id);
 	}
 }

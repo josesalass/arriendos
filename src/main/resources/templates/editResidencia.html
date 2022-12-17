@@ -23,7 +23,7 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h5 class="card-title mb-3">Editar Residencia</h5>
-                <form th:action="@{/residencia/update/{id}(id=${residencia.id})}" th:object="${residencia2}" method="post">
+                <form th:action="@{/residencia/update/{id}(id=${residencia.id})}" th:object="${residencia}" method="post">
                     <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Dirección</span>
                         <input type="text" class="form-control" th:field="*{direccion}" />
@@ -39,6 +39,10 @@
                     <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Institución</span>
                         <input type="text" class="form-control" th:field="*{institucion}" />
+                    </div>
+                    <div class="input-group flex-nowrap my-2">
+                        <span class="input-group-text" id="addon-wrapping">FechaPub</span>
+                        <input type="date" readonly class="form-control" th:field="*{fechaPub}" />
                     </div>
                     <div>
                         <h6 class="mt-3 ms-3">Restricciones</h6>
