@@ -112,6 +112,7 @@
                                 <td colspan="2">Institucion</td>
                                 <td th:if="${resi.institucion} == null">Sin asociación</td>
                                 <td th:if="${resi.institucion} != null" th:text="${resi.institucion}"></td>
+                                <td><a th:href="@{residencia/edit/{id} (id=${resi.id} )}">Editar</a></td>
                             </tr>
                         </table>
                     </div>

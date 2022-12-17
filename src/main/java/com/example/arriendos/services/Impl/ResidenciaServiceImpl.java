@@ -3,8 +3,12 @@ package com.example.arriendos.services.Impl;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.arriendos.services.ResidenciaService;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,7 @@ import com.example.arriendos.repositories.ResidenciaRepository;
 import com.example.arriendos.repositories.UsuarioRepository;
 
 @Service
+@Transactional
 public class ResidenciaServiceImpl implements ResidenciaService {
 
 	@Autowired
@@ -39,5 +44,18 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 
 		System.out.println("residencia en service: "+ residencia);
 		return residenciaRepository.save(residencia);
+	}
+
+	@Override
+	public Residencia findResidenciaById(Integer id) {
+		Residencia residencia = residenciaRepository.findById(id).get();
+		return residencia;
+	}
+
+	@Override
+	public void editarResidencia(Residencia residencia) {
+		
+		System.out.println("residencia en Service: "+ residencia);
+		residenciaRepository.save(residencia);
 	}
 }
