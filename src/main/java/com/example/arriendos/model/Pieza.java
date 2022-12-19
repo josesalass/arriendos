@@ -19,13 +19,8 @@ import java.util.List;
 public class Pieza {
     @Id
     @Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    /*@NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_residencia", nullable = false)
-    private Residencia idResidencia;*/
 
     @NotNull
     @Lob
@@ -41,9 +36,8 @@ public class Pieza {
     @Column(name = "precio")
     private Integer precio;
 
-    @NotNull
     @Lob
-    @Column(name = "img", nullable = false)
+    @Column(name = "img", nullable = true)
     private String img;
     
 

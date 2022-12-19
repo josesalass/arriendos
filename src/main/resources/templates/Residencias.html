@@ -24,6 +24,10 @@
             height: 15em;
         }
 
+        .card-body{
+            height: 40vh;
+        }
+
         .card-footer{
             font-size: 10px;
             text-align: center;
@@ -47,16 +51,32 @@
             
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                       <li><a href="#" class="nav-link px-2 link-secondary">Residencias</a></li>
-                      <li><a th:href="@{../piezas/list}" class="nav-link px-2 link-dark">Piezas</a></li>
                     </ul>
             
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                       <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
+                    
             
-                    <a th:href="@{../usuario/user}" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="container-fluid">
+                            <li class="nav-item"><a class="nav-link dropdown-toggle"
+                                href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"> <img
+                                    src="https://github.com/mdo.png" alt="mdo" width="32"
+                                    height="32" class="rounded-circle">
+                            </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" th:href="@{/usuario/perfil}">Ver perfil</a></li>
+                                    <li><a th:Href="@{/usuario/nuevo}" class="dropdown-item">Añadir Perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a type="button" class="btn"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Salir</a></li>
+
+                                </ul></li>
+                        </div>
+                    </nav>
                   </div>
                 </div>
               </header>
@@ -126,10 +146,15 @@
                                     <td colspan="2">Institucion</td>
                                     <td th:if="${resi.institucion} == null">Sin asociación</td>
                                     <td th:if="${resi.institucion} != null" th:text="${resi.institucion}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{residencia/edit/{id} (id=${resi.id} )}">Editar</a></td>
-                                    <td><a class="btn btn-danger" th:href="@{residencia/delete/{id} (id=${resi.id} )}">Eliminar</a></td>
                                 </tr>
+
                             </table>
+
+
+                            <div class="row" style="margin-right: 2.5em; margin-left: 2.5em; margin-top: 1em;">
+                                <a class="btn btn-primary" th:href="@{residencia/edit/{id} (id=${resi.id} )}">Editar</a>
+                                <a class="btn btn-danger" th:href="@{residencia/delete/{id} (id=${resi.id} )}">Eliminar</a>
+                            </div>
                         </div>
                         <div class="card-footer">
                             Fecha publicación:

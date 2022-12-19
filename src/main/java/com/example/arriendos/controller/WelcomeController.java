@@ -11,6 +11,6 @@ public class WelcomeController {
 	
 	@GetMapping("")
 	public String index(Model model) {
-		return "Piezas";
+		return "redirect:/residencia";
 	}
 }

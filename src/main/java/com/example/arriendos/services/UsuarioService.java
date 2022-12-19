@@ -6,10 +6,15 @@ import com.example.arriendos.model.Usuario;
 
 public interface UsuarioService {
 
-	Usuario getById(String rut);
+	Usuario getUserId(String rut);
 
 	List<Usuario> getAll();
 
 	void save(Usuario user);
+	public Usuario guardarUsuario(Usuario usuario);
+	
+	public Usuario actualizarUser(Usuario usuario);
+	
+	public void eliminarEstudiante(String rut);
 
 }

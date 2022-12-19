@@ -1,26 +1,20 @@
 package com.example.arriendos.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.arriendos.model.Residencia;
-import com.example.arriendos.repositories.ResidenciaRepository;
 import com.example.arriendos.services.ResidenciaService;
-import com.example.arriendos.services.Impl.ResidenciaServiceImpl;
 
 @RequestMapping("/residencia")
 @Controller
@@ -39,12 +33,14 @@ public class ResidenciaController {
 	@GetMapping("/create")
 	public String create(Model model) {
 		Residencia residencia = new Residencia();
+		System.out.println(residencia.getId());
 		model.addAttribute("residencia",residencia);
 		return "createResidencia";
 	}
 
 	@PostMapping("/create")
 	public String create(Residencia residencia, Model model) {
+		System.out.println(residencia.getDescripcion());
 		residenciaService.guardarResidencia(residencia);
 		return "redirect:/residencia";
 	}

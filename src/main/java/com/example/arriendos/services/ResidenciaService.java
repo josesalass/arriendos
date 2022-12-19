@@ -11,6 +11,5 @@ public interface ResidenciaService {
     Residencia findResidenciaById(Integer id);
     void editarResidencia(Residencia residencia);
 
-
     void eliminarResidencia(Integer id);
 }

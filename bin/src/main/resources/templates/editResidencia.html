@@ -18,37 +18,55 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="card mt-4">
             <div class="card-body">
-                <h5 class="card-title mb-3">Crear nueva Pieza</h5>
-                <form th:action="@{/piezas/listRes/create/{res} (res=${residencia})}" th:object="${pieza}" method="post">
-                    
+                <h5 class="card-title mb-3">Editar Residencia</h5>
+                <form th:action="@{/residencia/update/{id}(id=${residencia.id})}" th:object="${residencia}" method="post">
+                    <div class="input-group flex-nowrap my-2">
+                        <span class="input-group-text" id="addon-wrapping">Dirección</span>
+                        <input type="text" class="form-control" th:field="*{direccion}" />
+                    </div>
                     <!-- <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Nombre </span>
                         <input type="text" class="form-control" />
                     </div> -->
-
                     <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Descripcion</span>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{descripcion}"></textarea>
                     </div>
                     <div class="input-group flex-nowrap my-2">
-                        <span class="input-group-text" id="addon-wrapping">Espacio (mt2)</span>
-                        <input type="number" class="form-control" th:field="*{espacio}" />
+                        <span class="input-group-text" id="addon-wrapping">Institución</span>
+                        <input type="text" class="form-control" th:field="*{institucion}" />
                     </div>
                     <div class="input-group flex-nowrap my-2">
-                        <span class="input-group-text" id="addon-wrapping">Precio</span>
-                        <input type="number" class="form-control" th:field="*{precio}" />
+                        <span class="input-group-text" id="addon-wrapping">FechaPub</span>
+                        <input type="date" readonly class="form-control" th:field="*{fechaPub}" />
+                    </div>
+                    <div>
+                        <h6 class="mt-3 ms-3">Restricciones</h6>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." th:field="*{reestriccion1}">
+                                Solo Hombre
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." th:field="*{reestriccion2}">
+                                Solo Mujeres
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." th:field="*{reestriccion3}">
+                                Servicios básicos Compartidos
+                            </li>
+                        </ul>
                     </div>
                     <div class="d-flex justify-content-end">
                         <a th:href="@{/residencia}" type="button" class="btn btn-danger" data-bs-dismiss="modal">
                             Cerrar
                         </a>
                         <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
-                            Crear residencia
+                            Editar residencia
                         </button>
                     </div>
                 </form>

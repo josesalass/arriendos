@@ -18,37 +18,35 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="card mt-4">
             <div class="card-body">
-                <h5 class="card-title mb-3">Crear nueva Pieza</h5>
-                <form th:action="@{/piezas/listRes/create/{res} (res=${residencia})}" th:object="${pieza}" method="post">
-                    
+                <h5 class="card-title mb-3">Editar Pieza</h5>
+                <form th:action="@{/piezas/listRes/update/{idRes}/{id} (id=${pieza.id},idRes=${residencia})}" th:object="${pieza}" method="post">
+                    <div class="input-group flex-nowrap my-2">
+                        <span class="input-group-text" id="addon-wrapping">Descripción</span>
+                        <input type="text" class="form-control" th:field="*{descripcion}" />
+                    </div>
                     <!-- <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Nombre </span>
                         <input type="text" class="form-control" />
                     </div> -->
-
-                    <div class="input-group flex-nowrap my-2">
-                        <span class="input-group-text" id="addon-wrapping">Descripcion</span>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{descripcion}"></textarea>
-                    </div>
                     <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Espacio (mt2)</span>
-                        <input type="number" class="form-control" th:field="*{espacio}" />
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{espacio}"></textarea>
                     </div>
                     <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Precio</span>
-                        <input type="number" class="form-control" th:field="*{precio}" />
+                        <input type="text" class="form-control" th:field="*{precio}" />
                     </div>
+                   
                     <div class="d-flex justify-content-end">
                         <a th:href="@{/residencia}" type="button" class="btn btn-danger" data-bs-dismiss="modal">
                             Cerrar
                         </a>
                         <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
-                            Crear residencia
+                            Editar pieza
                         </button>
                     </div>
                 </form>

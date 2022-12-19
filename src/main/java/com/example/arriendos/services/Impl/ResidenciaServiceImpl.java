@@ -39,7 +39,7 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 		residencia.setFechaPub(date);
 
 		// este codigo es chantaaa!!
-		Usuario newUser = usuarioService.getById("20077281-4");
+		Usuario newUser = usuarioService.getUserId("20077281-4");
 		residencia.setUsuario(newUser);
 
 		System.out.println("residencia en service: "+ residencia);
@@ -54,7 +54,7 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 
 	@Override
 	public void editarResidencia(Residencia residencia) {
-		Usuario newUser = usuarioService.getById("20077281-4");
+		Usuario newUser = usuarioService.getUserId("20077281-4");
 		residencia.setUsuario(newUser);
 		residenciaRepository.save(residencia);
 	}

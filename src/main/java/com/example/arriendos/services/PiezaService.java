@@ -8,4 +8,12 @@ public interface PiezaService {
 
 	List<Pieza> getAll();
 
+	Pieza guardarPieza(Pieza pieza);
+
+	Pieza findPiezaById(Integer id);
+
+	void editarPieza(Pieza pieza) ;
+
+	void eliminarPieza(Pieza pieza);
+
 }
