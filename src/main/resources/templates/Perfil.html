@@ -1,110 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        td{
-            font-size: 14px;
-        }
-        
-        .row{
-            margin-bottom: 2em;
-        }
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	crossorigin="anonymous">
 
-        .card-img-top{
-            width: 100%;
-            height: 15em;
-        }
-        .card-body{
-            height: 10em;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+td {
+	font-size: 14px;
+}
 
-        .card-footer{
-            font-size: 10px;
-            text-align: center;
-        }
-        
-        #profile{
-        	width: 6em;
-        	border-radius: 100px;
-        }
-        
-         header{
-        	background-color: #a8d5e5;
-        }
-        
-    </style>
+
+
+.row {
+	margin-bottom: 2em;
+}
+
+.card-img-top {
+	width: 100%;
+	height: 15em;
+}
+
+.card-body {
+	height: 10em;
+}
+
+.card-footer {
+	font-size: 10px;
+	text-align: center;
+}
+
+#profile {
+	width: 6em;
+	border-radius: 100px;
+	margin-top: -70px
+}
+
+header {
+	background-color: #a8d5e5;
+	margin-top: -70px
+}
+
+.profile-head {
+	transform: translateY(5rem);
+	margin-bottom: 70px;
+	margin-top: -70px
+}
+
+.cover {
+	background-image:
+		url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+	background-size: cover;
+	background-repeat: no-repeat
+}
+
+body {
+	background: #654ea3;
+	background: linear-gradient(to right, #e96443, #904e95);
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+
+</style>
 </head>
-<body>
-    <div class="container-sm">
-        <div class="row">
-            <header class="p-3 mb-3 border-bottom">
-                <div class="container">
-                  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                      <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-                    </a>
-            
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                      <li><a th:href="@{../residencia/list}" class="nav-link px-2 link-secondary">Residencias</a></li>
-                      <li><a th:href="@{../piezas/list}" class="nav-link px-2 link-dark">Piezas</a></li>
-                    </ul>
-            
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                    </form>
-            
-                    <a href="#" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img th:href="@{../usuario/user}" src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                  </div>
-                </div>
-              </header>
-            
-        </div>
+<body >
+	<div class="container-sm">
+		<div class="row">
+			<header class="p-3 mb-3 border-bottom">
+				<div class="container">
+					<div
+						class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+						<a href="/"
+							class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+							<svg class="bi me-2" width="40" height="32" role="img"
+								aria-label="Bootstrap">
+								<use xlink:href="#bootstrap" /></svg>
+						</a>
 
+						<ul
+							class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+							<li><a th:href="@{../residencia/list}"
+								class="nav-link px-2 link-secondary">Residencias</a></li>
+							<li><a th:href="@{../piezas/list}"
+								class="nav-link px-2 link-dark">Piezas</a></li>
+						</ul>
 
-        <div class="row justify-content-center">
-            <div class="col-3">
-                <img id="profile" src="https://m.media-amazon.com/images/I/61ktgwYtnFL.jpg" width="200" class="rounded-circle">
-            </div>
-            <div class="col-4">
-                <form th:action="@{save}" th:object="${usuario}" method="post">
-                	<div class="mb-3">
-                      <input type="hidden" class="form-control" id="rut" th:value="${usuario.id}" th:field="*{id}">
-                    </div>
-                    <div class="mb-3">
-                      <label for="nombre" class="form-label">Nombre</label>
-                      <input type="text" class="form-control" id="nombre" th:value="${usuario.nombre}" th:field="*{nombre}">
-                    </div>
-                    <div class="mb-3">
-                      <label for="apellido1" class="form-label">Apellido Paterno</label>
-                      <input type="text" class="form-control" id="apellido1" th:value="${usuario.apellido1}" th:field="*{apellido1}">
-                    </div>
-                    <div class="mb-3">
-                      <label for="apellido2" class="form-label">Apellido Materno</label>
-                      <input type="text" class="form-control" id="apellido2" th:value="${usuario.apellido2}" th:field="*{apellido2}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="fecha" class="form-label">Fecha nacimiento</label>
-                        <input type="date" class="form-control" id="fecha" th:value="${usuario.nacimiento}" th:field="*{nacimiento}">
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" class="form-control" id="password" th:value="${usuario.password}" th:field="*{password}">
-                    </div>
-          
-                    
+						<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+							role="search">
+							<input type="search" class="form-control" placeholder="Search..."
+								aria-label="Search">
+						</form>
 
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                </form>
-            </div>
-        </div>
-        
-    </div>
-        
+						<a href="#" class="d-block link-dark text-decoration-none"
+							data-bs-toggle="dropdown" aria-expanded="false"> <img
+							th:href="@{../usuario/user}" src="https://github.com/mdo.png"
+							alt="mdo" width="32" height="32" class="rounded-circle">
+						</a>
+					</div>
+				</div>
+			</header>
+
+		</div>
+	</div>
+	</div>
+	<div class="row py-5 px-4" th:each="usuario : ${usuario}">
+		<div class="col-md-5 mx-auto">
+			<div class="bg-white shadow rounded overflow-hidden">
+				<div class="px-4 pt-0 pb-4 cover">
+					<div class="media align-items-end profile-head" th:each="usuario : ${usuario}">
+						<div class="profile mr-3" >
+							<img
+								src="https://www.mendozapost.com/files/image/7/7142/54b6f4c45797b_360_480!.jpg?s=bf284228883a747d8dc7886e606a181f&d=1638248546"
+								alt="..." width="130" class="rounded mb-2 img-thumbnail">
+						
+						</div>
+						<a th:Href="@{/usuario/editar/{id}(id=${usuario.id})}"
+					class="btn btn-info">Editar perfil</a>
+						<div class="media-body mb-5 text-white"
+							th:each="usuario : ${usuario}">
+							<h4 class="mt-0 mb-0" th:text="${usuario.nombre}"></h4><h4 th:text="${usuario.apellido1}"></h4>
+							<i class="fa-solid fa-street-view"></i><p class="small mb-4">
+								 San Carlos
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="bg-light p-4 d-flex justify-content-end text-center">
+					
+					<ul class="list-inline mb-0">
+					
+						<li class="list-inline-item">
+							<h5 class="font-weight-bold mb-0 d-block">3</h5> <small
+							class="text-muted"> <i class="fas fa-image mr-1"></i>Piezas
+								vistas
+						</small>
+						</li>
+						<li class="list-inline-item">
+							<h5 class="font-weight-bold mb-0 d-block">2</h5> <small
+							class="text-muted"> <i class="fas fa-user mr-1"></i>Valoraciones
+								entregadas
+						</small>
+						</li>
+					</ul>
+				</div>
+				<div class="px-4 py-3" th:each="usuario : ${usuario}">
+					<h5 class="mb-0">Información personal</h5>
+					<div class="p-4 rounded shadow-sm bg-light"
+						th:each="usuario : ${usuario}">
+						<h6>Apellido Paterno</h6>
+						<p class="font-italic mb-0" th:text="${usuario.apellido1}"></p>
+						<br>
+						<h6>Apellido Materno</h6>
+						<p class="font-italic mb-0" th:text="${usuario.apellido2}">Lives
+							in New York</p>
+							<br>
+						<h6>Apellido fecha de nacimiento</h6>
+						
+						<p class="font-italic mb-0" th:text="${usuario.nacimiento}">Photographer</p>
+						<br>
+						<h6>RUT</h6>
+						<p class="font-italic mb-0" th:text="${usuario.id}">Photographer</p>
+					</div>
+					<br>
+					<a style="margin-left: 40%" th:Href="@{/usuario/eliminar/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar Cuenta</a>
+				</div>
+				<div class="py-4 px-4">
+					<div class="d-flex align-items-center justify-content-between mb-3">
+						<h5 class="mb-0">Fotos de posibles residencias aportadas</h5>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 mb-2 pr-lg-1">
+							<img
+								src="https://miguiaargentina.com.ar/Imagenes/b/790078211-1-residencia-universitaria-moreno.jpeg"
+								alt="" class="img-fluid rounded shadow-sm">
+						</div>
+						<div class="col-lg-6 mb-2 pl-lg-1">
+							<img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkc_7GoUYUN9yZSegR49yVcLGwCYEel8N65f200Uph0ImZpGXhfXOfzGSL8lZ__MvcE4w&usqp=CAU"
+								alt="" class="img-fluid rounded shadow-sm">
+						</div>
+						<div class="col-lg-6 pr-lg-1 mb-2">
+							<img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL8RkDIQf8qfojEXV5ZLuJtCaiv5DGrklZJqKyrde8hoch_-0bEfvxenIn9um1srMx0hs&usqp=CAU"
+								alt="" class="img-fluid rounded shadow-sm">
+						</div>
+						<div class="col-lg-6 pl-lg-1">
+							<img
+								src="https://http2.mlstatic.com/D_NQ_NP_630910-MLU52000836054_102022-W.jpg"
+								alt="" class="img-fluid rounded shadow-sm">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<br>
 </body>
 </html>

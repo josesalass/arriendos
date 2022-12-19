@@ -35,6 +35,14 @@ public class UsuarioController {
 		return "usuarios";
 	}
 	
+	@GetMapping("/perfil")
+	public String usuariosPerfil(Model model) {
+		
+		model.addAttribute("usuario", service.getAll());
+		
+		return "perfil";
+	}
+	
 	@GetMapping("/nuevo")
 	public String crearUser(Model modelo) {
 		Usuario usuario = new Usuario();
@@ -71,7 +79,7 @@ public class UsuarioController {
 		usuarioExistente.setImg(usuario.getImg());
 		
 		service.actualizarUser(usuarioExistente);
-		return "redirect:/usuario/user";
+		return "redirect:/usuario/perfil";
 		
 	}
 	
