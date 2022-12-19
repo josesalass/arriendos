@@ -27,7 +27,7 @@ public class Categoria {
     private String nombre;
 
 
-    @ManyToMany(mappedBy = "categoriasPiezas")
+    @ManyToMany(mappedBy = "categoriasPiezas", fetch = FetchType.EAGER)
     public List<Pieza> piezas;
 
 

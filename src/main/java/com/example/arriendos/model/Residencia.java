@@ -66,7 +66,7 @@ public class Residencia {
 	// private String id_usuario;
     private Usuario usuario;
 
-    @OneToMany(mappedBy="residencia", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="residencia", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pieza> piezas;
 
 	public Integer getId() {

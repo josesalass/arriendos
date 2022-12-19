@@ -51,7 +51,7 @@
                     </a>
             
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a th:href="@{../residencia/list}" class="nav-link px-2 link-dark">Residencias</a></li>
+                        <li><a th:href="@{../residencia}" class="nav-link px-2 link-dark">Residencias</a></li>
                         <li><a th:href="@{../piezas/list}" class="nav-link px-2 link-secondary">Piezas</a></li>
          
                     </ul>
@@ -109,6 +109,10 @@
                             <tr>
                                 <td colspan="2">Restricciones</td>
                                 <td th:text="${pieza.residencia.reestriccion1}"></td>
+                            </tr>
+                            <tr th:each="categoria: ${pieza.categoriasPiezas}">
+                                <td colspan="2">Categoria</td>
+                                <td th:text="${categoria.nombre}"></td>
                             </tr>
                         </table>
                     </div>

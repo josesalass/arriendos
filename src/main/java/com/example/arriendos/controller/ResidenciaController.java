@@ -1,15 +1,21 @@
 package com.example.arriendos.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.arriendos.model.Residencia;
 import com.example.arriendos.repositories.ResidenciaRepository;
@@ -65,6 +71,25 @@ public class ResidenciaController {
 		residenciaService.eliminarResidencia(id);
 		return "redirect:/residencia";
 	}
+
+	// @GetMapping("/redirect/{resi}")
+	// public String redirect(@PathVariable(name="resi")int id, Model model) {
+	// 	Residencia res = residenciaService.findResidenciaById(id);
+	// 	System.out.println("entramos");
+	// 	return "redirect:/residencia";
+	// }
+
+	@GetMapping("/redirection/{resi}")
+	public RedirectView redirect(@PathVariable(name="resi")int id, RedirectAttributes attributes) {
+		Residencia res = residenciaService.findResidenciaById(id);
+		
+		attributes.addFlashAttribute("residencia", res);
+		System.out.println("entramos");
+		
+		return new RedirectView("../../piezas/listRes", true);
+	}
+
+	
 
 
 	

@@ -47,11 +47,11 @@ public class Pieza {
     private String img;
     
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_residencia", nullable = false)
     private Residencia residencia;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "piezacat",
             joinColumns = @JoinColumn(name = "id_pieza"),
