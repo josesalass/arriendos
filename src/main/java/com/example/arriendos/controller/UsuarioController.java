@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.arriendos.model.Usuario;
 import com.example.arriendos.services.UsuarioService;
@@ -26,6 +27,8 @@ public class UsuarioController {
 	
 	@Autowired 
 	UsuarioService service;
+	
+	RedirectAttributes redirectAttrs;
 	
 	@GetMapping("/user")
 	public String getUser(Model model) {
@@ -56,7 +59,7 @@ public class UsuarioController {
 	public String saveUser(Usuario user, Model model) {
 		service.save(user);
 		
-		return "redirect:/usuario/user";
+		return "redirect:/usuario/perfil";
 	}
 	
 	@GetMapping("/editar/{id}")
@@ -86,6 +89,9 @@ public class UsuarioController {
 	@GetMapping("/eliminar/{id}")
 	public String eliminarUser(@PathVariable String id) {
 		service.eliminarEstudiante(id);
-		return "redirect:/usuario/user";
+		return "redirect:/piezas/list";
 	}
+	
+	
+	
 }

@@ -106,7 +106,7 @@ body {
 
 		</div>
 	</div>
-	<div class="row py-5 px-4" th:each="usuario : ${usuario}">
+	<div class="row py-5 px-4" >
 		<div class="col-md-5 mx-auto">
 			<div class="bg-white shadow rounded overflow-hidden">
 				<div class="px-4 pt-0 pb-4 cover">
@@ -146,7 +146,7 @@ body {
 						</li>
 					</ul>
 				</div>
-				<div class="px-4 py-3" th:each="usuario : ${usuario}">
+				<div class="px-4 py-3">
 					<h5 class="mb-0">Información personal</h5>
 					<div class="p-4 rounded shadow-sm bg-light"
 						th:each="usuario : ${usuario}">
@@ -164,9 +164,14 @@ body {
 						<h6>RUT</h6>
 						<p class="font-italic mb-0" th:text="${usuario.id}">Photographer</p>
 					</div>
-					<br>
+					<br > 
+					<div th:each="usuario : ${usuario}">
+					
 					<a style="margin-left: 40%" th:Href="@{/usuario/eliminar/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar Cuenta</a>
+				
+					</div>
 				</div>
+				
 				<div class="py-4 px-4">
 					<div class="d-flex align-items-center justify-content-between mb-3">
 						<h5 class="mb-0">Fotos de posibles residencias aportadas</h5>
