@@ -183,7 +183,7 @@ header {
                             </tr>
 							<tr>
 								<td><a class="btn btn-primary" th:href="@{./listRes/edit/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id})}">Editar</a></td>
-                                <td><a class="btn btn-danger" th:href="@{./listRes/delete/{id} (id=${pieza.id} )}">Eliminar</a></td>
+                                <td><a class="btn btn-danger" th:href="@{./listRes/delete/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id} )}">Eliminar</a></td>
 							</tr>
 						</table>
 					</div>

@@ -3,7 +3,6 @@ package com.example.arriendos.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "pieza")
@@ -36,8 +34,9 @@ public class Pieza {
     @Column(name = "precio")
     private Integer precio;
 
+
     @Lob
-    @Column(name = "img", nullable = true)
+    @Column(name = "img", nullable = false)
     private String img;
     
 

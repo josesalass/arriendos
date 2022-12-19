@@ -8,7 +8,7 @@ public interface PiezaService {
 
 	List<Pieza> getAll();
 
-	Pieza guardarPieza(Pieza pieza);
+	Pieza guardarPieza(Pieza pieza, int idResidencia);
 
 	Pieza findPiezaById(Integer id);
 

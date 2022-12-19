@@ -38,11 +38,18 @@ public class PiezaServiceImpl implements PiezaService {
 	}
 
 	@Override
-	public Pieza guardarPieza(Pieza pieza) {
+	public Pieza guardarPieza(Pieza pieza, int idResidencia) {
+		Residencia res = residenciaService.findResidenciaById(idResidencia);
+
+		pieza.setResidencia(res);
+
+		Pieza a = repository.save(pieza);
+
+		res.getPiezas().add(pieza);
 		
 		System.out.println("pieza en service: "+ pieza);
-		return repository.save(pieza);
-	}
+		return a;
+	};
 
 	@Override
 	public void eliminarPieza(Pieza pieza) {

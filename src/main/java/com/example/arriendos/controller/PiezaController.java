@@ -61,10 +61,13 @@ public class PiezaController {
 
 		pieza.setImg("");
 		Residencia res = residenciaService.findResidenciaById(id);
-		pieza.setResidencia(res);
+
 
 		attributes.addFlashAttribute("residencia", res);
-		//service.guardarPieza(pieza);
+
+		Pieza pie = service.guardarPieza(pieza, res.getId());
+
+		System.out.println(pie.getDescripcion());
 
 		return new RedirectView("../../listRes", true);
 	}	
@@ -96,14 +99,18 @@ public class PiezaController {
 	}
 
 	//elimina la residencia
-	@GetMapping("listRes/delete/{id}")
-	public String delete(@PathVariable(name="id")Integer id, Model model,RedirectAttributes attributes) {
+	@GetMapping("listRes/delete/{res}/{id}")
+	public RedirectView delete(@PathVariable(name="res")int res,@PathVariable(name="id")Integer id, Model model,RedirectAttributes attributes) {
 
 		Pieza pieza = service.findPiezaById(id);
 		service.eliminarPieza(pieza);
+
+		Residencia residencia = residenciaService.findResidenciaById(res);
 		
-		return "redirect:/residencia";
-	}
+		attributes.addFlashAttribute("residencia", residencia);
+
+		return new RedirectView("../../../listRes", true);
+	};
 
 	@GetMapping(value="/listRes")
 	public String listRes(Model model,  HttpServletRequest request) {
