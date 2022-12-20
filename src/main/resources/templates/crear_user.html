@@ -26,44 +26,44 @@
 					<div class="card-body">
 						<form th:action="@{/usuario/save}" th:object="${usuario}" method="POST">
 							<br>
-							<div class="form-group">
-							<label>Nombre: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">Nombre:  </span>
 							<input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese su nombre" required>
 							
 							</div>
 							<br>
-							<div class="form-group">
-							<label>Contrase�a: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">Contraseña:  </span>
 							<input type="text" name="password" th:field="*{password}" class="form-control" placeholder="Ingrese su nombre" required>
 							
 							</div>
 							<br>
-							<div class="form-group">
-							<label>Apellido Paterno: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">Apellido Paterno: </span>
 							<input type="text" name="apellido1" th:field="*{apellido1}" class="form-control" placeholder="Ingrese su apellido paterno" required>
 							
 							</div>
 							<br>
-							<div class="form-group">
-							<label>Apellido Materno: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">Apellido Materno: </span>
 							<input type="text" name="apellido2" th:field="*{apellido2}" class="form-control" placeholder="Ingrese su apellido materno" required>
 							
 							</div>
 							<br>
-							<div class="form-group">
-							<label>Nacimiento: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">Nacimiento: </span>
 							<input type="text" name="nacimiento" th:field="*{nacimiento}" class="form-control" placeholder="Ingrese su fecha de nacimiento ejem: 20-02-1990" required>
 							
 							</div>
 							<br>
-							<div class="form-group">
-							<label>RUT: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">RUT: </span>
 							<input type="text" name="id" th:field="*{id}" class="form-control" placeholder="Ingrese su rut" required>
 							
 							</div>
 							<br>
-							<div class="form-group">
-							<label>IMG: </label>
+							<div class="input-group flex-nowrap my-2">
+							<span class="input-group-text" id="addon-wrapping">IMG: </span>
 							<input type="text" name="img" th:field="*{img}" class="form-control" placeholder="Ingrese su rut" required>
 							
 							</div>

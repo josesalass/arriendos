@@ -89,7 +89,7 @@ public class UsuarioController {
 	@GetMapping("/eliminar/{id}")
 	public String eliminarUser(@PathVariable String id) {
 		service.eliminarEstudiante(id);
-		return "redirect:/piezas/list";
+		return "redirect:/residencia";
 	}
 	
 	
