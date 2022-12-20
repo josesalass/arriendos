@@ -34,7 +34,8 @@ td {
 }
 
 .card-body {
-	height: 10em;
+	min-height: 10em;
+	max-height: max-content;
 }
 
 header {
@@ -173,10 +174,10 @@ header {
 								<td colspan="2">Descripción</td>
 								<td th:text="${pieza.descripcion}">Baño privado</td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td colspan="2">Restricciones</td>
 								<td th:text="${pieza.residencia.reestriccion1}"></td>
-							</tr>
+							</tr> -->
                             <tr th:each="categoria: ${pieza.categoriasPiezas}">
                                 <td colspan="2">Categoria</td>
                                 <td th:text="${categoria.nombre}"></td>

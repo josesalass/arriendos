@@ -47,7 +47,7 @@
         }
 
         .card-body {
-            height: 10em;
+            height: max-content;
         }
 
         header {
@@ -120,10 +120,10 @@
                                 <td colspan="2">Descripción</td>
                                 <td th:text="${resi.descripcion}"></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td colspan="2">Restricciones</td>
                                 <td th:text="${resi.reestriccion1}"></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td colspan="2">Institucion</td>
                                 <td th:if="${resi.institucion} == null">Sin asociación</td>
