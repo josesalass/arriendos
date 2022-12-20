@@ -89,6 +89,7 @@ public class PiezaController {
 	public RedirectView edit(@PathVariable(name="res")int idRes, @Valid Pieza pieza2, Model model, RedirectAttributes attributes) {
 		Residencia residencia = residenciaService.findResidenciaById(idRes);
 		pieza2.setResidencia(residencia);
+		pieza2.setImg("");
 		service.editarPieza(pieza2);
 
 		
