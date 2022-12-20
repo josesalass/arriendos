@@ -23,7 +23,7 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h5 class="card-title mb-3">Editar Pieza</h5>
-                <form th:action="@{/piezas/listRes/update/{idRes}/{id}(id=${pieza.id}, idRes=${residencia})}" th:object="${pieza}" method="post">
+                <form th:action="@{/piezas/listRes/update/{idRes}/{id}(idRes=${residencia},id=${pieza.id})}" th:object="${pieza}" method="post">
                     <div class="input-group flex-nowrap my-2">
                         <span class="input-group-text" id="addon-wrapping">Descripción</span>
                         <input type="text" class="form-control" th:field="*{descripcion}" />
