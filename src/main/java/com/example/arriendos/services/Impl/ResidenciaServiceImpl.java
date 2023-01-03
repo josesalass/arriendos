@@ -32,6 +32,7 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 		return residenciaRepository.findAll();
 	}
 
+
 	@Override
 	public Residencia guardarResidencia(Residencia residencia) {
 		Date date = new Date();

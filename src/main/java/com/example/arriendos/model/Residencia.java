@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "residencia")
-public class Residencia {
+public class Residencia implements Comparable<Residencia>{
 
     @Id
     @Column(name = "id", nullable = false)
@@ -148,6 +148,16 @@ public class Residencia {
 	public void setPiezas(List<Pieza> piezas) {
 		this.piezas = piezas;
 	}
+
+	@Override
+    public boolean equals(Object obj) {
+        return ((Residencia) obj).getFechaPub().equals(getFechaPub());
+    }
+
+    @Override
+    public int compareTo(Residencia residencia) {
+        return getFechaPub().compareTo(residencia.getFechaPub());
+    }
 
 
 

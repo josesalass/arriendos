@@ -1,5 +1,7 @@
 package com.example.arriendos.controller;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -26,9 +28,30 @@ public class ResidenciaController {
 	@GetMapping("")
 	public String list(Model model) {
 		List<Residencia> residencias = residenciaService.getAll();
+		String order = "";
+		model.addAttribute("residencias",residencias);
+		model.addAttribute("order",order);
+		
+		return "Residencias";
+	}
+
+	@PostMapping("/sort")
+	public String listDesc(String order, Model model) {
+		List<Residencia> residencias = residenciaService.getAll();
+		
+		if(order.equals("desc")){
+			Collections.sort(residencias, new Comparator<Residencia>() {
+				public int compare(Residencia res1, Residencia res2) {
+					return res2.getFechaPub().compareTo(res1.getFechaPub());
+				}
+			});
+		}else{
+			Collections.sort(residencias);
+		}
 		model.addAttribute("residencias",residencias);
 		return "Residencias";
 	}
+
 
 	@GetMapping("/create")
 	public String create(Model model) {
@@ -84,6 +107,16 @@ public class ResidenciaController {
 		
 		return new RedirectView("../../piezas/listRes", true);
 	}
+
+	// @GetMapping("/sort")
+	// public String sort(Model model) {
+	// 	List<Residencia> residencias = residenciaService.getAll();
+
+	// 	Collections.sort(residencias);
+
+	// 	model.addAttribute("residencias",residencias);
+	// 	return "Residencias";
+	// }
 
 	
 

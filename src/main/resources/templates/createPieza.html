@@ -16,6 +16,13 @@
             margin-top: 1rem;
             margin-left: 1rem;
         }
+
+        body {
+            background: #654ea3;
+            background: linear-gradient(to right, #e96443, #904e95);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 
@@ -35,11 +42,11 @@
                         <span class="input-group-text" id="addon-wrapping">Descripcion</span>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{descripcion}"></textarea>
                     </div>
-                    <div class="input-group flex-nowrap my-2">
+                    <div class="input-group flex-nowrap my-2" style="width: 20em;">
                         <span class="input-group-text" id="addon-wrapping">Espacio (mt2)</span>
                         <input type="number" class="form-control" th:field="*{espacio}" />
                     </div>
-                    <div class="input-group flex-nowrap my-2">
+                    <div class="input-group flex-nowrap my-2" style="width: 20em;">
                         <span class="input-group-text" id="addon-wrapping">Precio</span>
                         <input type="number" class="form-control" th:field="*{precio}" />
                     </div>
