@@ -123,7 +123,7 @@ body {
 					</nav>
 
 				</div>
-				<!-- Modal -->
+				 Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -194,7 +194,7 @@ body {
 		<div class="row">
 			<div th:each="pieza: ${piezas}" class="col-6 col-md-4">
 				<div class="card">
-					<img class="card-img-top" src="https://picsum.photos/900">
+					<img class="card-img-top" th:src="@{${'/imagenesPiezas/'+ pieza.id + '-' + pieza.img}}">
 					<div class="card-body">
 						<table style="height: 8em;">
 							<!-- <tr>

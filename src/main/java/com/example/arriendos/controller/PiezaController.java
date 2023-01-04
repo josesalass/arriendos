@@ -1,5 +1,9 @@
 package com.example.arriendos.controller;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +24,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
@@ -57,17 +62,30 @@ public class PiezaController {
 	}
 
 	@PostMapping("listRes/create/{res}")
-	public RedirectView create(@PathVariable(name="res")int id,Pieza pieza, Model model, RedirectAttributes attributes) {
+	public RedirectView create(@PathVariable(name="res")int id, Pieza pieza, @RequestParam("file") MultipartFile imagen, Model model, RedirectAttributes attributes) {
 
-		pieza.setImg("");
-		Residencia res = residenciaService.findResidenciaById(id);
+		System.out.println("imagen: "+imagen);
+
+		if(!imagen.isEmpty()) {
+			Path directorioImagenes = Paths.get("src//main//resources//static//imagenesPiezas");
+			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+			try {
+
+				Residencia res = residenciaService.findResidenciaById(id);
+				attributes.addFlashAttribute("residencia", res);
+				pieza.setImg(imagen.getOriginalFilename());
+				Pieza pie = service.guardarPieza(pieza, res.getId());
+				System.out.println(pie.getDescripcion());
 
 
-		attributes.addFlashAttribute("residencia", res);
+				byte[] bytesImg = imagen.getBytes();
+				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + pie.getId() + "-" +imagen.getOriginalFilename());
+				java.nio.file.Files.write(rutaCompleta, bytesImg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-		Pieza pie = service.guardarPieza(pieza, res.getId());
-
-		System.out.println(pie.getDescripcion());
 
 		return new RedirectView("../../listRes", true);
 	}	
@@ -105,6 +123,9 @@ public class PiezaController {
 
 		Pieza pieza = service.findPiezaById(id);
 		service.eliminarPieza(pieza);
+
+		File imagen = new File("src//main//resources//static//imagenesPiezas//"+id+"-"+pieza.getImg());
+		imagen.delete();
 
 		Residencia residencia = residenciaService.findResidenciaById(res);
 		
