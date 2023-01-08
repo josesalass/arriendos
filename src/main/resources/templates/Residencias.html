@@ -164,14 +164,21 @@
                                 <td class="table-title" colspan="2">Descripción</td>
                                 <td th:text="${resi.descripcion}"></td>
                             </tr>
-                            <!-- <tr>
-                                <td colspan="2">Restricciones</td>
-                                <td th:text="${resi.reestriccion1}"></td>
-                            </tr> -->
                             <tr>
                                 <td class="table-title" colspan="2">Institucion</td>
                                 <td th:if="${resi.institucion} == null">Sin asociación</td>
                                 <td th:if="${resi.institucion} != null" th:text="${resi.institucion}"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-title">Restricciones</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="list-group">
+                                    <li  th:if="${resi.reestriccion1}">No se aceptan mascotas</li>
+                                    <li  th:if="${resi.reestriccion2}">Solo mujeres</li>
+                                    <li  th:if="${resi.reestriccion3}">Baño compartido</li>
+                                </td>
                             </tr>
 
                         </table>

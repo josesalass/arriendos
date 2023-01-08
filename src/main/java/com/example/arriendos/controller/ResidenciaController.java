@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.example.arriendos.model.Pieza;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +28,15 @@ public class ResidenciaController {
 	@GetMapping("")
 	public String list(Model model) {
 		List<Residencia> residencias = residenciaService.getAll();
+
+		for (Residencia residencia : residencias) {
+			System.out.println("Residencia: "+ residencia.getId() + " - "+ residencia.getReestriccion1());
+			System.out.println("Residencia: "+ residencia.getId() + " - "+ residencia.getReestriccion2());
+			System.out.println("Residencia: "+ residencia.getId() + " - "+ residencia.getReestriccion3());
+
+
+		}
+
 		String order = "";
 		model.addAttribute("residencias",residencias);
 		model.addAttribute("order",order);
