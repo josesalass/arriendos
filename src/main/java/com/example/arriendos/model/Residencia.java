@@ -61,6 +61,9 @@ public class Residencia implements Comparable<Residencia>{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaPub;
 
+	@Column(name = "imagenresidencia")
+	private String imagenResidencia;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
 	// private String id_usuario;
@@ -131,6 +134,14 @@ public class Residencia implements Comparable<Residencia>{
 
 	public void setFechaPub(Date fechaPub) {
 		this.fechaPub = fechaPub;
+	}
+
+	public String getImagenResidencia() {
+		return imagenResidencia;
+	}
+
+	public void setImagenResidencia(String imagenResidencia) {
+		this.imagenResidencia = imagenResidencia;
 	}
 
 	public String getUsuario() {

@@ -1,17 +1,18 @@
 package com.example.arriendos.controller;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.example.arriendos.model.Pieza;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -37,6 +38,7 @@ public class ResidenciaController {
 
 	@PostMapping("/sort")
 	public String listDesc(String order, Model model) {
+		System.out.println("order: "+order);
 		List<Residencia> residencias = residenciaService.getAll();
 		
 		if(order.equals("desc")){
@@ -62,10 +64,32 @@ public class ResidenciaController {
 	}
 
 	@PostMapping("/create")
-	public String create(Residencia residencia, Model model) {
-		System.out.println(residencia.getDescripcion());
-		residenciaService.guardarResidencia(residencia);
-		return "redirect:/residencia";
+	public RedirectView create(Residencia res, @RequestParam("file") MultipartFile imagen, Model model, RedirectAttributes attributes) {
+
+		System.out.println("imagen: "+imagen);
+		System.out.println("res: "+res);
+		if(!imagen.isEmpty()) {
+			Path directorioImagenes = Paths.get("src//main//resources//static//imagenesResidencias");
+			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+			try {
+
+				attributes.addFlashAttribute("residencia", res);
+
+				res.setImagenResidencia(imagen.getOriginalFilename());
+				Residencia resCreada = residenciaService.guardarResidencia(res);
+				System.out.println(resCreada.getId());
+
+
+				byte[] bytesImg = imagen.getBytes();
+				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + resCreada.getId() + "-" +imagen.getOriginalFilename());
+				java.nio.file.Files.write(rutaCompleta, bytesImg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+
+		return new RedirectView("/residencia", true);
 	}
 
 	//lleva a la pagina editResidencia
