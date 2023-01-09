@@ -19,7 +19,7 @@ import com.example.arriendos.model.Usuario;
 import com.example.arriendos.services.UsuarioService;
 import com.example.arriendos.services.Impl.UsuarioServiceImpl;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RequestMapping("/usuario")
 @Controller

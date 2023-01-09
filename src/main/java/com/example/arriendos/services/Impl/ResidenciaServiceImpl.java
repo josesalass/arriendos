@@ -7,10 +7,11 @@ import java.util.Optional;
 
 import com.example.arriendos.services.ResidenciaService;
 
-import jakarta.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.arriendos.model.Residencia;
 import com.example.arriendos.model.Usuario;

@@ -20,8 +20,8 @@ import com.example.arriendos.model.Residencia;
 import com.example.arriendos.services.ResidenciaService;
 import com.example.arriendos.services.Impl.PiezaServiceImpl;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
