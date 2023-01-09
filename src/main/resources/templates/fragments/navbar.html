@@ -29,6 +29,9 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        
+                        <!--REGISTRADO-->
+                        
                         <a th:href="@{../residencia}" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none" sec:authorize="hasRole('ROLE_USER')" >
                             <h1 style="font-size: 4em;"><i class="fa-solid fa-person-shelter"></i></h1>
                             <span style="margin-left: 1em;"></span>
@@ -38,26 +41,64 @@
                                 <h4>Tu Residencia</h4>
                             </span>
                         </a>
+
+                        <!--NO REGISTRADO-->
+
+                        <a th:href="@{/residencia/list}" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"  sec:authorize="!hasRole('ROLE_USER')" >
+                            <h1 style="font-size: 4em;"><i class="fa-solid fa-person-shelter"></i></h1>
+                            <span style="margin-left: 1em;"></span>
+                            <span>
+                                <h2>Encuentra</h2>
+                                <h4>Tu Residencia</h4>
+                            </span>
+                        </a>
+
+                        
     
                     </ul>
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <a th:href="@{/residencia/list}" class="d-flex mb-2 btn btn-light"  sec:authorize="!hasRole('ROLE_USER')" >
+                            <h6>Ver Residencias Disponibles</h6>
+                        </a>
+
+                        <a th:href="@{/residencia}" class="d-flex mb-2 btn btn-light"  sec:authorize="hasRole('ROLE_USER')" >
+                            <h6>Ver Residencias Publicadas</h6>
+                        </a>
+                    </ul>
+                    
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <a th:href="@{/piezas/list}" class="d-flex mb-2 btn btn-light"  sec:authorize="!hasRole('ROLE_USER')" >
+                            <h6>Ver Piezas Disponibles</h6>
+                        </a>
+                    </ul>
+
+                    
     
     
                     
                         <nav class="navbar navbar-expand-lg">
                             <div class="container-fluid">
-                                <a class="btn btn-primary" sec:authorize="!hasRole('ROLE_USER')" type="button" th:href="@{/usuario/nuevo}">
-                                    Registrarse
-                                  </a>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <a class="btn btn-primary" sec:authorize="!hasRole('ROLE_USER')" type="button" th:href="@{/usuario/nuevo}">
+                                            Registrarse
+                                        </a>
+                                    </div>
+                                    <div class="col-7">
+                                        <a class="btn btn-success" sec:authorize="!hasRole('ROLE_USER')" type="button" th:href="@{/login}">
+                                            Iniciar Sesión
+                                        </a>                                        
+                                    </div>
+                                </div>
+
+                                
                   
-                                  <a class="btn btn-primary" sec:authorize="!hasRole('ROLE_USER')" type="button" th:href="@{/login}">
-                                    Iniciar Sesión
-                                  </a>
-                  
-                                  <a class="btn btn-primary" sec:authorize="hasRole('ROLE_USER')" type="button" th:href="@{/logout}">
-                                    Cerrar sesión
-                                  </a>
+                                
+                
     
-                                <li class="nav-item" style="list-style: none;">
+                                <li class="nav-item" style="list-style: none;" sec:authorize="hasRole('ROLE_USER')">
                                     <a class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false"> 
                                         <img
@@ -66,7 +107,7 @@
                                     </a>
                                     <ul class="dropdown-menu" >
                                         <li><a class="dropdown-item" th:href="@{../usuario/perfil}">Ver perfil</a></li>
-                                        <li><a th:href="@{../usuario/nuevo}" class="dropdown-item">A�adir Perfil</a></li>
+                                        <!-- <li><a th:href="@{../usuario/nuevo}" class="dropdown-item">A�adir Perfil</a></li> -->
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
@@ -94,7 +135,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
     
-                                <a type="button" href="#" class="btn btn-danger">Salir</a>
+                                <a type="button" th:href="@{/logout}" class="btn btn-danger">Salir</a>
     
                             </div>
                         </div>

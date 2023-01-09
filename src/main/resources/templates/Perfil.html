@@ -93,9 +93,9 @@ body {
 						<div class="media-body mb-5 text-white"
 							th:each="usuario : ${usuario}">
 							<h4 class="mt-0 mb-0" th:text="${usuario.nombre}"></h4><h4 th:text="${usuario.apellido1}"></h4>
-							<p class="small mb-4">
+							<!-- <p class="small mb-4">
 								 San Carlos <i class="fa-solid fa-street-view"></i>
-							</p>
+							</p> -->
 						</div>
 					</div>
 				</div>
@@ -104,17 +104,16 @@ body {
 					<ul class="list-inline mb-0">
 					
 						<li class="list-inline-item">
-							<h5 class="font-weight-bold mb-0 d-block">3</h5> <small
-							class="text-muted"> <i class="fas fa-image mr-1"></i>Piezas
-								vistas
+							<h5 class="font-weight-bold mb-0 d-block" th:text="${usuario.residencias.size}"></h5> <small
+							class="text-muted"> <i class="fas fa-image mr-1"></i>Residencias registradas
 						</small>
 						</li>
-						<li class="list-inline-item">
+						<!-- <li class="list-inline-item">
 							<h5 class="font-weight-bold mb-0 d-block">2</h5> <small
 							class="text-muted"> <i class="fas fa-user mr-1"></i>Valoraciones
 								entregadas
 						</small>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<div class="px-4 py-3">
@@ -143,7 +142,7 @@ body {
 					</div>
 				</div>
 				
-				<div class="py-4 px-4">
+				<!-- <div class="py-4 px-4">
 					<div class="d-flex align-items-center justify-content-between mb-3">
 						<h5 class="mb-0">Fotos de posibles residencias aportadas</h5>
 					</div>
@@ -176,7 +175,7 @@ body {
 					</div>
 						
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		

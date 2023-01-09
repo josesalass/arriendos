@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +33,7 @@ public class UsuarioController {
 	
 	RedirectAttributes redirectAttrs;
 	
+	@Secured("ROLE_USER")
 	@GetMapping("/user")
 	public String getUser(Model model) {
 		
@@ -38,14 +42,17 @@ public class UsuarioController {
 		return "usuarios";
 	}
 	
+	@Secured("ROLE_USER")
 	@GetMapping("/perfil")
 	public String usuariosPerfil(Model model) {
 		
-		model.addAttribute("usuario", service.getAll());
+		UserDetails user = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("usuario", service.getUserId(user.getUsername()));
 		
 		return "perfil";
 	}
 	
+
 	@GetMapping("/nuevo")
 	public String crearUser(Model modelo) {
 		Usuario usuario = new Usuario();
@@ -62,6 +69,7 @@ public class UsuarioController {
 		return "redirect:/usuario/perfil";
 	}
 	
+	@Secured("ROLE_USER")
 	@GetMapping("/editar/{id}")
 	public String mostarFormEditar(@PathVariable String id, Model modelo, Usuario usuario) {
 		//Usuario user = service.getUserId(rut);
@@ -70,6 +78,8 @@ public class UsuarioController {
 		return "editar_user";
 		
 	}
+
+	@Secured("ROLE_USER")
 	@PostMapping("/user/{id}")
 	public String actualizarUser(@PathVariable String id, @ModelAttribute("usuario") Usuario usuario, Model modelo) {
 		Usuario usuarioExistente = service.getUserId(id);
@@ -85,7 +95,7 @@ public class UsuarioController {
 		return "redirect:/usuario/perfil";
 		
 	}
-	
+	@Secured("ROLE_USER")
 	@GetMapping("/eliminar/{id}")
 	public String eliminarUser(@PathVariable String id) {
 		service.eliminarEstudiante(id);

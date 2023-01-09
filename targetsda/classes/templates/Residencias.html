@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JavaScript Bundle with Popper -->
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fff956a6e2.js" crossorigin="anonymous"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/fff956a6e2.js" crossorigin="anonymous"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/fff956a6e2.js" crossorigin="anonymous"></script>
+    
+
+    <title>Document</title>
+    <style>
+        td {
+            font-size: 14px;
+        }
+
+        .table-title{
+            font-weight: bold;
+        }
+        
+
+        .row {
+            margin-bottom: 2em;
+        }
+
+        .col-4 {
+            margin-bottom: 2em !important;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 15em;
+            
+        }
+
+        header {
+            background-color: #ffffff;
+        }
+
+        .card-footer {
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .card-img-top{
+            padding: 0;
+        }
+        .card{
+            box-shadow: 3px 3px 20px 1px black;
+        }
+
+        .direccion{
+            text-transform: uppercase;
+        }
+
+        body {
+            background: #654ea3;
+            background: linear-gradient(to right, #e96443, #904e95);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div th:replace="fragments/navbar"></div>
+    <div class="container-sm">
+        
+        <div class="row d-flex ">
+
+            <div class="col-10">
+                <form th:action="@{/residencia/sort}" method='POST' th:object="${order}">
+                    <div class="row d-flex align-items-start justify-content-left">
+                        <div class="col-2">
+                            <h5 style="color: white;"> Ordenar Por: </h5>
+                            
+                        </div>
+            
+                        <div class="col-3">
+                            <div>
+                                <select id="order" name="order" class="form-select" aria-label="Default select example">
+                                    <option value="def" selected>Ordenar por Fecha:</option>
+                                    <option value="desc">Más reciente</option>
+                                    <option value="asc">Más antiguo</option>
+                                </select>
+
+                            </div>
+                            <input name="submit" type="submit" value="submit" />
+                        </div>
+
+
+                        
+                        
+            
+            
+                    </div>
+
+                </form>
+                
+            </div>
+            <div class="col-2">
+                <a class="btn btn-info row justify-content-center" th:href="@{/residencia/create}"
+                    style="height: 4em; box-shadow:  20px 20px 17px -14px rgba(0,0,0,0.75);">
+                    <i class="fa-solid fa-house-chimney-medical"></i>
+                    Nueva residencia
+                </a>
+
+            </div>
+
+            
+
+        </div>
+
+        
+
+
+
+        <!--MINIATURAS-->
+        <div class="row d-flex justify-content-evenly">
+            <div class="col-10 col-md-6 col-lg-4" th:each="resi: ${residencias}">
+                <!-- <a th:href="@{/residencia/redirect/{residencia}(residencia=${resi})}"> -->
+                <div class="card">
+                    <img class="card-img-top" th:src="@{${'/imagenesResidencias/'+ resi.id + '-' + resi.imagenResidencia}}">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <a th:href="@{residencia/redirection/{resi} (resi=${resi.id})}" class="btn btn-info">
+                                <i class="fa-solid fa-bed"></i> Ver piezas
+                            </a>
+                        </div>
+                        <table style="height: 13em;">
+                            <tr>
+                                <td class="table-title" colspan="2" >Dirección</td>
+                                <td class="direccion" th:text="${resi.direccion}"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-title" colspan="2">N° de Piezas</td>
+                                <td style="padding-left: 1em;" th:text="${resi.piezas.size()}"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-title" colspan="2">Descripción</td>
+                                <td th:text="${resi.descripcion}"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-title" colspan="2">Institucion</td>
+                                <td th:if="${resi.institucion} == null">Sin asociación</td>
+                                <td th:if="${resi.institucion} != null" th:text="${resi.institucion}"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-title">Restricciones</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="list-group">
+                                    <li  th:if="${resi.reestriccion1}">No se aceptan mascotas</li>
+                                    <li  th:if="${resi.reestriccion2}">Solo mujeres</li>
+                                    <li  th:if="${resi.reestriccion3}">Baño compartido</li>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <div class="row justify-content-right">
+                            <div class="btn-toolbar justify-content-end" role="group" aria-label="Basic example">
+                                <a class="btn btn-primary btn-sm me-1" th:href="@{residencia/edit/{id} (id=${resi.id} )}"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                <a class="btn btn-danger btn-sm" th:href="@{residencia/delete/{id} (id=${resi.id} )}"><i class="fa-solid fa-trash"></i> Borrar</a>
+    
+                            </div>
+                        </div>
+
+                        
+
+                        
+
+
+                    </div>
+                    <div class="card-footer" style="margin-top: -2rem;">
+                        Fecha publicación:
+                        <span th:text="${#dates.format(resi.fechaPub, 'dd-MM-yyyy')}"></span>
+                    </div>
+                </div>
+                <!-- </a> -->
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

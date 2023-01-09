@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/fff956a6e2.js" crossorigin="anonymous"></script>
+
+<title>Document</title>
+<style>
+td {
+	font-size: 14px;
+}
+
+.row {
+	margin-bottom: 2em;
+}
+
+.col-4 {
+	margin-bottom: 2em !important;
+}
+
+.card{
+	box-shadow: 3px 3px 20px 1px black;
+}
+
+.card-img-top {
+	width: 100%;
+	
+	height: 15em;
+}
+
+.card-body {
+	min-height: 15em;
+
+}
+
+header {
+	background-color: #ffffff;
+	
+}
+
+.table-title{
+            font-weight: bold;
+        }
+
+body {
+            background: #654ea3;
+            background: linear-gradient(to right, #e96443, #904e95);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+
+.card-footer {
+	font-size: 10px;
+	text-align: center;
+}
+
+.direccion{
+	text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/navbar"></div>
+	<!-- <div class="row">
+		<header class="p-3 mb-3 border-bottom">
+			<div class="container">
+				<div
+					class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+					<a href="/"
+						class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+						<svg class="bi me-2" width="40" height="32" role="img"
+							aria-label="Bootstrap">
+							<use xlink:href="#bootstrap" /></svg>
+					</a>
+
+					<ul
+						class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+						<li><a th:href="@{../residencia}"
+							class="nav-link px-2 link-dark">
+							<h4>Residencias</h4>
+						</a></li>
+						
+
+					</ul>
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+						role="search">
+						<input type="search" class="form-control" placeholder="Search..."
+							aria-label="Search">
+					</form>
+					<nav class="navbar navbar-expand-lg">
+						<div class="container-fluid">
+							<li class="nav-item"><a class="nav-link dropdown-toggle"
+								href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false"> <img
+									src="https://github.com/mdo.png" alt="mdo" width="32"
+									height="32" class="rounded-circle">
+							</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" th:href="@{/usuario/perfil}">Ver perfil</a></li>
+									<li><a th:href="@{/usuario/nuevo}" class="dropdown-item">Añadir Perfil</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a type="button" class="btn"
+											data-bs-toggle="modal" data-bs-target="#exampleModal">
+											Salir</a></li>
+
+								</ul></li>
+						</div>
+					</nav>
+
+				</div>
+				 Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="exampleModalLabel">Seguro que deseas salir?</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							
+							<div class="modal-footer" >
+								<button type="button" class="btn btn-secondary"
+									data-bs-dismiss="modal">Cancelar</button>
+								
+								<a type="button" href="#" class="btn btn-danger">Salir</a>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+	</div> -->
+	<div class="container-sm">
+		
+
+		<div class="row d-fkex align-items-start">
+            <h3 style="color: white;"><i class="fa-sharp fa-solid fa-location-dot"></i> Dirección: <span class="direccion" th:text="${residencia.direccion}"></span></h3>
+        </div>
+
+		<div class="row d-flex">
+
+			<div class="col-10">
+				<div class="row d-flex align-items-start">
+					<div class="col-2">
+						<h5 style="color: white;"> Ordenar Por: </h5>
+					</div>
+		
+					<div class="col-3">
+						<select class="form-select" aria-label="Default select example">
+							<option selected>Ordenar por</option>
+							<option value="1">Precio</option>
+							<option value="2">Fecha publicación</option>
+							<option value="3">Tamaño</option>
+						</select>
+					</div>
+		
+		
+				</div>
+			</div>
+
+        	<div class="col-2">
+        		<a class="btn btn-info row justify-content-center" th:href="@{./listRes/create/{res} (res=${residencia.id})}" style="height: 4em;">
+                    <i class="fa-solid fa-bed"></i>       
+                    Nueva pieza
+                </a>
+               
+        	</div>
+        	
+        </div>
+
+		
+
+
+
+		<!--MINIATURAS-->
+		<div class="row">
+			<div th:each="pieza: ${piezas}" class="col-6 col-md-4">
+				<div class="card">
+					<img class="card-img-top" th:src="@{${'/imagenesPiezas/'+ pieza.id + '-' + pieza.img}}">
+					<div class="card-body">
+						<table style="height: 8em;">
+							<!-- <tr>
+								<td colspan="2">Dirección</td>
+								<td th:text="${pieza.residencia.direccion}"></td>
+							</tr> -->
+							<tr>
+								<td class="table-title" colspan="2">Espacio</td>
+								<td style="padding-left: 1em;"><span th:text="${pieza.espacio}"></span><span> mt2</span></td> 
+							</tr>
+							<tr>
+								<td class="table-title" colspan="2">Descripción</td>
+								<td style="padding-left: 1em;" th:text="${pieza.descripcion}"></td>
+							</tr>
+							<tr>
+								<td class="table-title" colspan="2">Precio</td>
+								<td style="padding-left: 1em;">
+									$<span th:text="${pieza.precio}"></span>
+								</td>
+							</tr>
+							<!-- <tr>
+								<td colspan="2">Restricciones</td>
+								<td th:text="${pieza.residencia.reestriccion1}"></td>
+							</tr> -->
+                            <tr th:each="categoria: ${pieza.categoriasPiezas}">
+                                <td class="table-title" colspan="2">Categoria</td>
+                                <td style="padding-left: 1em;" th:text="${categoria.nombre}"></td>
+                            </tr>
+
+								
+						</table>
+
+						<div class="row justify-content-right" style="margin-top: 5em;">
+							<div class="btn-group" role="group" aria-label="Basic example">
+								<a class="btn btn-primary" th:href="@{./listRes/edit/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
+								<a class="btn btn-danger" th:href="@{./listRes/delete/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id} )}"><i class="fa-solid fa-trash"></i></a>
+							</div>
+						</div>
+						
+					</div>
+					<div class="card-footer">
+						Fecha publicación: 
+						<span th:text="${#dates.format(pieza.residencia.fechaPub, 'dd-MM-yyyy')}"></span>
+					</div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+
+
+	</div>
+
+</body>
+</html>

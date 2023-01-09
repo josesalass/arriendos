@@ -92,14 +92,14 @@
         <div class="row d-flex ">
 
             <div class="col-10">
-                <form th:action="@{/residencia/sort}" method='POST' th:object="${order}">
+                <form th:action="@{/residencia/sort}" method='POST' th:object="${order}" sec:authorize="hasRole('ROLE_USER')"  >
                     <div class="row d-flex align-items-start justify-content-left">
                         <div class="col-2">
                             <h5 style="color: white;"> Ordenar Por: </h5>
                             
                         </div>
             
-                        <div class="col-3">
+                        <div class="col-4">
                             <div>
                                 <select id="order" name="order" class="form-select" aria-label="Default select example">
                                     <option value="def" selected>Ordenar por Fecha:</option>
@@ -108,10 +108,12 @@
                                 </select>
 
                             </div>
-                            <input name="submit" type="submit" value="submit" />
+                            
                         </div>
 
-
+                        <div class="col-2">
+                            <input class="btn btn-light" name="submit" type="submit" value="Ordenar" />
+                        </div>
                         
                         
             
@@ -119,6 +121,8 @@
                     </div>
 
                 </form>
+
+
                 
             </div>
             <div class="col-2">
@@ -140,7 +144,7 @@
 
         <!--MINIATURAS-->
         <div class="row d-flex justify-content-evenly">
-            <div class="col-10 col-md-6 col-lg-4" th:each="resi: ${residencias}">
+            <div class="col-10 col-md-6 col-lg-4 mb-4" th:each="resi: ${residencias}">
                 <!-- <a th:href="@{/residencia/redirect/{residencia}(residencia=${resi})}"> -->
                 <div class="card">
                     <img class="card-img-top" th:src="@{${'/imagenesResidencias/'+ resi.id + '-' + resi.imagenResidencia}}">

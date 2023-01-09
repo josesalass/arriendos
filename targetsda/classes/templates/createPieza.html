@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .input-group-text {
+            width: 8rem;
+        }
+        button, a{
+            margin-top: 1rem;
+            margin-left: 1rem;
+        }
+
+        body {
+            background: #654ea3;
+            background: linear-gradient(to right, #e96443, #904e95);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Crear nueva Pieza</h5>
+                <form th:action="@{/piezas/listRes/create/{res} (res=${residencia})}" th:object="${pieza}" method="post" enctype="multipart/form-data">
+                    
+                    <!-- <div class="input-group flex-nowrap my-2">
+                        <span class="input-group-text" id="addon-wrapping">Nombre </span>
+                        <input type="text" class="form-control" />
+                    </div> -->
+
+                    <div class="input-group flex-nowrap my-2">
+                        <span class="input-group-text" id="addon-wrapping">Descripcion</span>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" th:field="*{descripcion}"></textarea>
+                    </div>
+                    <div class="input-group flex-nowrap my-2" >
+                        <span class="input-group-text" id="addon-wrapping">Espacio (mt2)</span>
+                        <input type="number" class="form-control" th:field="*{espacio}" />
+                    </div>
+                    <div class="input-group flex-nowrap my-2" >
+                        <span class="input-group-text" id="addon-wrapping">Precio</span>
+                        <input type="number" class="form-control" th:field="*{precio}" />
+                    </div>
+                    <div>
+                        <p style="margin-bottom: 10px">Imágenes</p>
+                        <input accept="image/*" type="file" name="file" class="form-control" id="imagen" />
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a th:href="@{/residencia}" type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            Cerrar
+                        </a>
+                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                            Crear residencia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

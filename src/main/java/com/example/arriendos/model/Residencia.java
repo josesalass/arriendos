@@ -26,37 +26,37 @@ public class Residencia implements Comparable<Residencia>{
 
 
     @NotNull
-    @Lob
+    //@Lob
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
 
-    @Lob
+    //@Lob
     @Column(name = "reestriccion1")
     private Boolean reestriccion1;
 
 
-    @Lob
+    //@Lob
     @Column(name = "reestriccion2")
     private Boolean reestriccion2;
 
 
-    @Lob
+    //@Lob
     @Column(name = "reestriccion3")
     private Boolean reestriccion3;
 
     @NotNull
-    @Lob
+    //@Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @NotNull
-    @Lob
+    //@Lob
     @Column(name = "institucion", nullable = false)
     private String institucion;
     
     @NotNull
-    @Lob
+    //@Lob
     @Column(name = "fecha_pub")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaPub;
@@ -71,6 +71,25 @@ public class Residencia implements Comparable<Residencia>{
 
     @OneToMany(mappedBy="residencia", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pieza> piezas;
+
+
+
+	
+	//Constructor
+	public Residencia (String direccion, Boolean reestriccion1, Boolean reestriccion2, Boolean reestriccion3, String descripcion, String institucion, Date fechaPub, String imagenResidencia, Usuario usuario, List<Pieza> piezas) {
+		this.direccion = direccion;
+		this.reestriccion1 = reestriccion1;
+		this.reestriccion2 = reestriccion2;
+		this.reestriccion3 = reestriccion3;
+		this.descripcion = descripcion;
+		this.institucion = institucion;
+		this.fechaPub = fechaPub;
+		this.imagenResidencia = imagenResidencia;
+		this.usuario = usuario;
+		this.piezas = piezas;
+	};
+
+	
 
 	public Integer getId() {
 		return id;

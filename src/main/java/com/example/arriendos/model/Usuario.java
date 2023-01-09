@@ -38,7 +38,7 @@ public class Usuario {
     @Column(name = "nacimiento", nullable = false, length = 10)
     private String nacimiento;
 
-    @Lob
+    //@Lob
     @Column(name = "img", nullable = false)
     private String img;
 
@@ -125,6 +125,14 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+    public List<Residencia> getResidencias() {
+        return residencias;
+    }
+
+    public void setResidencias(List<Residencia> residencias) {
+        this.residencias = residencias;
+    }
     
     
 

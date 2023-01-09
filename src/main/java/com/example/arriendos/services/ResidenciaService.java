@@ -12,4 +12,5 @@ public interface ResidenciaService {
     void editarResidencia(Residencia residencia);
 
     void eliminarResidencia(Integer id);
+    List<Residencia> getAllByOwner();
 }

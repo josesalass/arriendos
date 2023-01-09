@@ -1,6 +1,7 @@
 package com.example.arriendos.services.Impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,8 @@ import com.example.arriendos.services.ResidenciaService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,15 +36,29 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 		return residenciaRepository.findAll();
 	}
 
+	@Override
+	public List<Residencia> getAllByOwner(){
+		UserDetails user = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		Usuario newUser = usuarioService.getUserId(user.getUsername());
+
+		return newUser.getResidencias();
+
+	}
+
 
 	@Override
 	public Residencia guardarResidencia(Residencia residencia) {
+
+		UserDetails user = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		Date date = new Date();
 		System.out.println("fecha: "+ date);
 		residencia.setFechaPub(date);
 
 		// este codigo es chantaaa!!
-		Usuario newUser = usuarioService.getUserId("20077281-4");
+		System.out.println(user.getUsername());
+		Usuario newUser = usuarioService.getUserId(user.getUsername());
 		residencia.setUsuario(newUser);
 
 		System.out.println("residencia en service: "+ residencia);

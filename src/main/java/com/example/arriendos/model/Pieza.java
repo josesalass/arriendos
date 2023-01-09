@@ -21,7 +21,7 @@ public class Pieza {
     private Integer id;
 
     @NotNull
-    @Lob
+    //@Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
@@ -35,7 +35,7 @@ public class Pieza {
     private Integer precio;
 
 
-    @Lob
+    //@Lob
     @Column(name = "img", nullable = false)
     private String img;
     

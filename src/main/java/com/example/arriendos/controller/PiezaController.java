@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,15 +42,17 @@ public class PiezaController {
 	@Autowired
 	ResidenciaService residenciaService;
 	
+
 	@GetMapping("/list")
 	public String list(Model model) {
 		List<Pieza> piezas = service.getAll();	
 		
 		model.addAttribute("piezas",piezas);
 				
-		return "Piezas";
+		return "visuals/Piezas";
 	}
 
+	@Secured("ROLE_USER")
 	@GetMapping("listRes/create/{res}")
 	public String create(@PathVariable(name="res")int id,Model model) {
 
@@ -60,7 +63,9 @@ public class PiezaController {
 		model.addAttribute("pieza",pieza);
 		return "createPieza";
 	}
+	
 
+	@Secured("ROLE_USER")
 	@PostMapping("listRes/create/{res}")
 	public RedirectView create(@PathVariable(name="res")int id, Pieza pieza, @RequestParam("file") MultipartFile imagen, Model model, RedirectAttributes attributes) {
 
@@ -91,6 +96,7 @@ public class PiezaController {
 	}	
 
 
+	@Secured("ROLE_USER")
 	//lleva a la pagina editPieza
 	@GetMapping("listRes/edit/{res}/{id}")
 	public String mostrarEdit(@PathVariable(name="res")int idRes,@PathVariable(name="id")int id, Model model){
@@ -102,6 +108,7 @@ public class PiezaController {
 		return "editPieza";
 	}
 
+	@Secured("ROLE_USER")
 	//edita la residencia
 	@PostMapping("listRes/update/{res}/{id}")
 	public RedirectView edit(@PathVariable(name="res")int idRes, @Valid Pieza pieza2, Model model, RedirectAttributes attributes) {
@@ -117,6 +124,7 @@ public class PiezaController {
 		return new RedirectView("../../../listRes", true);
 	}
 
+	@Secured("ROLE_USER")
 	//elimina la residencia
 	@GetMapping("listRes/delete/{res}/{id}")
 	public RedirectView delete(@PathVariable(name="res")int res,@PathVariable(name="id")Integer id, Model model,RedirectAttributes attributes) {
@@ -134,8 +142,11 @@ public class PiezaController {
 		return new RedirectView("../../../listRes", true);
 	};
 
+	@Secured("ROLE_USER")
 	@GetMapping(value="/listRes")
 	public String listRes(Model model,  HttpServletRequest request) {
+
+		
 		
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		
@@ -156,6 +167,31 @@ public class PiezaController {
 		// model.addAttribute("piezas", res.getPiezas());
 		
 	}
+
+	@GetMapping(value="/listResU")
+	public String listResU(Model model,  HttpServletRequest request) {
+		System.out.println("Redirigiendo a piezasU");
+		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+		
+		if (inputFlashMap != null) {
+			Residencia residencia = (Residencia) inputFlashMap.get("residencia");
+
+			model.addAttribute("residencia", residencia);
+
+			model.addAttribute("piezas", residencia.getPiezas());
+
+			return "Piezas";
+			
+		} else {
+			return "redirect:../../residencia/list";
+		}
+		// Residencia res = residenciaService.findResidenciaById((int)model.getAttribute("residencia"));
+		
+		// model.addAttribute("piezas", res.getPiezas());
+		
+	}
+
+	
 	
 
 }
