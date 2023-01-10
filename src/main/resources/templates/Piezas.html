@@ -162,8 +162,8 @@ body {
 
 						<div class="row justify-content-right" style="margin-top: 5em;" sec:authorize="hasRole('ROLE_USER')" >
 							<div class="btn-group" role="group" aria-label="Basic example">
-								<a class="btn btn-primary" th:href="@{./listRes/edit/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id})}"><i class="fa-solid fa-pen-to-square"></i></a>
-								<a class="btn btn-danger" th:href="@{./listRes/delete/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id} )}"><i class="fa-solid fa-trash"></i></a>
+								<a class="btn btn-primary" th:href="@{./listRes/edit/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id})}"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+								<a class="btn btn-danger" th:href="@{./listRes/delete/{res}/{id} (id=${pieza.id}, res=${pieza.residencia.id} )}"><i class="fa-solid fa-trash"></i>Eliminar</a>
 							</div>
 						</div>
 						
