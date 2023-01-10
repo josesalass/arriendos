@@ -72,7 +72,7 @@ public class PiezaController {
 		System.out.println("imagen: "+imagen);
 
 		if(!imagen.isEmpty()) {
-			Path directorioImagenes = Paths.get("src//main//resources//static//imagenesPiezas");
+			Path directorioImagenes = Paths.get("src//main//resources//static///assets//img//imagenesPiezas");
 			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 			try {
 
@@ -132,7 +132,7 @@ public class PiezaController {
 		Pieza pieza = service.findPiezaById(id);
 		service.eliminarPieza(pieza);
 
-		File imagen = new File("src//main//resources//static//imagenesPiezas//"+id+"-"+pieza.getImg());
+		File imagen = new File("src//main//resources//static///assets//img//imagenesPiezas//"+id+"-"+pieza.getImg());
 		imagen.delete();
 
 		Residencia residencia = residenciaService.findResidenciaById(res);

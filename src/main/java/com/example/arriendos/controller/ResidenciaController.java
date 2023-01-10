@@ -56,7 +56,7 @@ public class ResidenciaController {
 		List<Residencia> residencias = residenciaService.getAll();
 
 		for (Residencia residencia : residencias) {
-			System.out.println("Residencia: /imagenesResidencias/"+ residencia.getId() + "-"+ residencia.getImagenResidencia());
+			System.out.println("Residencia: /assets/img/imagenesResidencias/"+ residencia.getId() + "-"+ residencia.getImagenResidencia());
 
 		}
 
@@ -120,7 +120,7 @@ public class ResidenciaController {
 		System.out.println("imagen: "+imagen);
 		System.out.println("res: "+res);
 		if(!imagen.isEmpty()) {
-			Path directorioImagenes = Paths.get("src//main//resources//static//imagenesResidencias");
+			Path directorioImagenes = Paths.get("src//main//resources//static///assets//img//imagenesResidencias");
 			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 			try {
 

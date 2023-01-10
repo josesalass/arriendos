@@ -49,7 +49,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void eliminarEstudiante(String rut) {
 		// TODO Auto-generated method stub
-		repository.deleteById(rut);
+
+		Usuario usuario = repository.getById(rut);
+		repository.delete(usuario);
 		
 	}
 

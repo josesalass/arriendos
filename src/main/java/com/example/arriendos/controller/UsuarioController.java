@@ -66,7 +66,7 @@ public class UsuarioController {
 	public String saveUser(Usuario user, Model model, @RequestParam("file") MultipartFile imagen) {
 
 		if(!imagen.isEmpty()) {
-			Path directorioImagenes = Paths.get("src//main//resources//static//imagenesPerfiles");
+			Path directorioImagenes = Paths.get("src//main//resources//static///assets//img//imagenesPerfiles");
 			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 			try {
 				model.addAttribute("user", user);
@@ -113,6 +113,8 @@ public class UsuarioController {
 		usuarioExistente.setNacimiento(usuario.getNacimiento());
 		usuarioExistente.setPassword(usuario.getPassword());
 		usuarioExistente.setImg(usuario.getImg());
+
+		usuarioExistente.setTelefono(usuario.getTelefono());
 		
 		service.actualizarUser(usuarioExistente);
 		return "redirect:/usuario/perfil";

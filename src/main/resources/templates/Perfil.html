@@ -83,7 +83,7 @@ body {
 				<div class="px-4 pt-0 pb-4 cover">
 					<div class="media align-items-end profile-head" th:each="usuario : ${usuario}">
 						<div class="profile mr-3" >
-							<img th:src="@{${'/imagenesPerfiles/'+ usuario.id + '-' + usuario.img}}"
+							<img th:src="@{${'/assets/img/imagenesPerfiles/'+ usuario.id + '-' + usuario.img}}"
 								alt="..." width="130" class="rounded mb-2 img-thumbnail">
 						
 						</div>
@@ -123,15 +123,16 @@ body {
 						<p class="font-italic mb-0" th:text="${usuario.apellido1}"></p>
 						<br>
 						<h6>Apellido Materno</h6>
-						<p class="font-italic mb-0" th:text="${usuario.apellido2}">Lives
-							in New York</p>
-							<br>
+						<p class="font-italic mb-0" th:text="${usuario.apellido2}"></p>
+						<br>
 						<h6>Fecha de nacimiento</h6>
-						
-						<p class="font-italic mb-0" th:text="${usuario.nacimiento}">Photographer</p>
+						<p class="font-italic mb-0" th:text="${usuario.nacimiento}"></p>
+						<br>
+						<h6>Número de teléfono</h6>
+						<p class="font-italic mb-0" th:text="${usuario.telefono}"></p>
 						<br>
 						<h6>RUT</h6>
-						<p class="font-italic mb-0" th:text="${usuario.id}">Photographer</p>
+						<p class="font-italic mb-0" th:text="${usuario.id}"></p>
 					</div>
 					<br > 
 					<div th:each="usuario : ${usuario}">

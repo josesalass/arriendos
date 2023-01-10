@@ -42,6 +42,11 @@ public class Usuario {
     @Column(name = "img", nullable = false)
     private String img;
 
+    @NotNull
+    @Column(name= "telefono", nullable = false)
+    private int telefono;
+
+
     @OneToMany(mappedBy="usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Residencia> residencias;
 
@@ -50,7 +55,7 @@ public class Usuario {
     
     public Usuario(@Size(max = 10) String id, String password, @Size(max = 30) @NotNull String nombre,
 			@Size(max = 30) @NotNull String apellido1, @Size(max = 30) @NotNull String apellido2,
-			@Size(max = 10) @NotNull String nacimiento, @NotNull String img) {
+			@Size(max = 10) @NotNull String nacimiento, @NotNull String img, @NotNull @Size(max=9) int telefono) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -59,6 +64,7 @@ public class Usuario {
 		this.apellido2 = apellido2;
 		this.nacimiento = nacimiento;
 		this.img = img;
+        this.telefono = telefono;
 	}
     
     
@@ -125,6 +131,14 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
 
     public List<Residencia> getResidencias() {
         return residencias;

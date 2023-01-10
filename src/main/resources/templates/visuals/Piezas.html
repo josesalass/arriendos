@@ -113,12 +113,16 @@ body {
 		<div class="row">
 			<div th:each="pieza: ${piezas}" class="col-6 col-md-4 mb-4">
 				<div class="card">
-					<img class="card-img-top" th:src="@{${'/imagenesPiezas/'+ pieza.id + '-' + pieza.img}}">
+					<img class="card-img-top" th:src="@{${'/assets/img/imagenesPiezas/'+ pieza.id + '-' + pieza.img}}">
 					<div class="card-body">
 						<table style="height: 8em;">
 							<tr>
 								<td class="table-title" colspan="2">Dirección</td>
-								<td th:text="${pieza.residencia.direccion}"></td>
+								<td style="padding-left: 1em;" th:text="${pieza.residencia.direccion}"></td>
+							</tr>
+							<tr>
+								<td class="table-title" colspan="2">Número de teléfono:</td>
+								<td style="padding-left: 1em;" th:text="${pieza.residencia.usuario.telefono}"></td>
 							</tr>
 							<tr>
 								<td class="table-title" colspan="2">Espacio</td>

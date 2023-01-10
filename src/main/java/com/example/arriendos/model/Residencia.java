@@ -64,7 +64,7 @@ public class Residencia implements Comparable<Residencia>{
 	@Column(name = "imagenresidencia")
 	private String imagenResidencia;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_usuario", nullable = false)
 	// private String id_usuario;
     private Usuario usuario;
@@ -163,8 +163,8 @@ public class Residencia implements Comparable<Residencia>{
 		this.imagenResidencia = imagenResidencia;
 	}
 
-	public String getUsuario() {
-		return this.usuario.getId();
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {

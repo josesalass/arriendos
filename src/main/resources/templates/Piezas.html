@@ -83,6 +83,9 @@ body {
 		<div class="row d-fkex align-items-start">
             <h3 style="color: white;"><i class="fa-sharp fa-solid fa-location-dot"></i> Dirección: <span class="direccion" th:text="${residencia.direccion}"></span></h3>
         </div>
+		<div class="row d-fkex align-items-start" sec:authorize="!hasRole('ROLE_USER')">
+            <h5 style="color: white;"><i class="fa-sharp fa-solid fa-phone"></i> Número de teléfono: <span class="direccion" th:text="${residencia.usuario.telefono}"></span></h5>
+        </div>
 
 		<div class="row d-flex justify-content-end">
 
@@ -123,7 +126,7 @@ body {
 		<div class="row">
 			<div th:each="pieza: ${piezas}" class="col-6 col-md-4 mb-4">
 				<div class="card">
-					<img class="card-img-top" th:src="@{${'/imagenesPiezas/'+ pieza.id + '-' + pieza.img}}">
+					<img class="card-img-top" th:src="@{${'/assets/img/imagenesPiezas/'+ pieza.id + '-' + pieza.img}}">
 					<div class="card-body">
 						<table style="height: 8em;">
 							<!-- <tr>
@@ -144,6 +147,7 @@ body {
 									$<span th:text="${pieza.precio}"></span>
 								</td>
 							</tr>
+							
 							<!-- <tr>
 								<td colspan="2">Restricciones</td>
 								<td th:text="${pieza.residencia.reestriccion1}"></td>

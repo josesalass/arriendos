@@ -141,7 +141,7 @@
             <div class="col-10 col-md-6 col-lg-4 mb-4" th:each="resi: ${residencias}">
                 <!-- <a th:href="@{/residencia/redirect/{residencia}(residencia=${resi})}"> -->
                 <div class="card">
-                    <img class="card-img-top" th:src="@{${'/imagenesResidencias/'+ resi.id + '-' + resi.imagenResidencia}}">
+                    <img class="card-img-top" th:src="@{${'/assets/img/imagenesResidencias/'+ resi.id + '-' + resi.imagenResidencia}}">
 
                     <div class="card-body mb-2">
                         <div class="row">
@@ -166,6 +166,10 @@
                                 <td class="table-title" colspan="2">Institucion</td>
                                 <td th:if="${resi.institucion} == null">Sin asociación</td>
                                 <td th:if="${resi.institucion} != null" th:text="${resi.institucion}"></td>
+                            </tr>
+                            <tr>
+                                <td class="table-title" colspan="2">Número de teléfono</td>
+                                <td th:text="${resi.usuario.telefono}"></td>
                             </tr>
                             <tr>
                                 <td class="table-title">Restricciones</td>

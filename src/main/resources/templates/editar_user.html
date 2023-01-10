@@ -65,6 +65,7 @@
 							<span class="input-group-text" id="addon-wrapping">Apellido Materno: </span>
 							<input type="text" name="apellido2" th:field="*{apellido2}" class="form-control" placeholder="Ingrese su apellido materno" required>
 							
+							<input type="hidden" name="password" th:field="*{password}">
 							</div>
 							<br>
 							<div class="input-group flex-nowrap my-2">
@@ -73,6 +74,13 @@
 							
 							</div>
 							<br>
+							<div class="input-group flex-nowrap my-2">
+								<span class="input-group-text" id="addon-wrapping">Número de telefono: </span>
+								<input type="text" name="nacimiento" th:field="*{telefono}" class="form-control" placeholder="Ingrese su numero de telefono, ejem: 912345678" required>
+								
+								</div>
+								<br>
+							
 							<div class="input-group flex-nowrap my-2">
 							<span class="input-group-text" id="addon-wrapping">IMG: </span>
 							<input type="text" name="img" th:field="*{img}" class="form-control" placeholder="Ingrese su rut" required>

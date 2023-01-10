@@ -22,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer{
 		localeResolver.setDefaultLocale(new Locale("es", "ES"));
 		return localeResolver;
 	}
-	
+
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor localeInterceptor = new LocaleChangeInterceptor();
@@ -34,7 +34,7 @@ public class MvcConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(this.localeChangeInterceptor());
 	}
-	
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/access-denied").setViewName("access-denied");
@@ -46,12 +46,15 @@ public class MvcConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		String resoucePath = Paths.get("uploads").toAbsolutePath().toUri().toString();
-		
+
+		// String resoucePath2 = Paths.get("static").toAbsolutePath().toUri().toString();
+		// System.out.println(resoucePath2);
+
 		registry.addResourceHandler("/uploads/**").addResourceLocations(resoucePath);
-		
+
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
-	
 
-    
+
+
 }
