@@ -10,7 +10,7 @@ public interface UsuarioService {
 
 	List<Usuario> getAll();
 
-	void save(Usuario user);
+	public Usuario save(Usuario user);
 	public Usuario guardarUsuario(Usuario usuario);
 	
 	public Usuario actualizarUser(Usuario usuario);

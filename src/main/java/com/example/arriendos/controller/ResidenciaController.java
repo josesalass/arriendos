@@ -56,9 +56,7 @@ public class ResidenciaController {
 		List<Residencia> residencias = residenciaService.getAll();
 
 		for (Residencia residencia : residencias) {
-			System.out.println("Residencia: "+ residencia.getId() + " - "+ residencia.getReestriccion1());
-			System.out.println("Residencia: "+ residencia.getId() + " - "+ residencia.getReestriccion2());
-			System.out.println("Residencia: "+ residencia.getId() + " - "+ residencia.getReestriccion3());
+			System.out.println("Residencia: /imagenesResidencias/"+ residencia.getId() + "-"+ residencia.getImagenResidencia());
 
 		}
 

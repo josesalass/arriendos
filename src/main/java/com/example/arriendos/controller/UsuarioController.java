@@ -1,21 +1,21 @@
 package com.example.arriendos.controller;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.arriendos.model.Residencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.arriendos.model.Usuario;
@@ -63,9 +63,32 @@ public class UsuarioController {
 	
 	
 	@PostMapping("/save")
-	public String saveUser(Usuario user, Model model) {
-		service.save(user);
-		
+	public String saveUser(Usuario user, Model model, @RequestParam("file") MultipartFile imagen) {
+
+		if(!imagen.isEmpty()) {
+			Path directorioImagenes = Paths.get("src//main//resources//static//imagenesPerfiles");
+			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+			try {
+				model.addAttribute("user", user);
+
+				String contra  = user.getPassword();
+
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				String hashedPassword = passwordEncoder.encode(contra);
+				user.setPassword(hashedPassword);
+
+				user.setImg(imagen.getOriginalFilename());
+				Usuario usuario = service.save(user);
+
+
+
+				byte[] bytesImg = imagen.getBytes();
+				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + usuario.getId() + "-" +imagen.getOriginalFilename());
+				java.nio.file.Files.write(rutaCompleta, bytesImg);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		return "redirect:/usuario/perfil";
 	}
 	

@@ -83,8 +83,7 @@ body {
 				<div class="px-4 pt-0 pb-4 cover">
 					<div class="media align-items-end profile-head" th:each="usuario : ${usuario}">
 						<div class="profile mr-3" >
-							<img
-								src="https://www.mendozapost.com/files/image/7/7142/54b6f4c45797b_360_480!.jpg?s=bf284228883a747d8dc7886e606a181f&d=1638248546"
+							<img th:src="@{${'/imagenesPerfiles/'+ usuario.id + '-' + usuario.img}}"
 								alt="..." width="130" class="rounded mb-2 img-thumbnail">
 						
 						</div>

@@ -30,8 +30,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	@Override
-	public void save(Usuario user) {
-		repository.save(user);
+	public Usuario save(Usuario user) {
+		return repository.save(user);
 	}
 
 	@Override
