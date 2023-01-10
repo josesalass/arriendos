@@ -73,7 +73,8 @@ public class ResidenciaServiceImpl implements ResidenciaService {
 
 	@Override
 	public void editarResidencia(Residencia residencia) {
-		Usuario newUser = usuarioService.getUserId("20077281-4");
+		UserDetails user = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario newUser = usuarioService.getUserId(user.getUsername());
 		residencia.setUsuario(newUser);
 		residenciaRepository.save(residencia);
 	}
