@@ -1,11 +1,16 @@
 package com.example.arriendos.controller;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -19,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.arriendos.ResidenciaExcelExporter;
 import com.example.arriendos.model.Residencia;
 import com.example.arriendos.services.ResidenciaService;
 
@@ -209,7 +215,23 @@ public class ResidenciaController {
 	// }
 
 	
-
+	@Secured("ROLE_USER")
+	@GetMapping("/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+         
+        List<Residencia> residencias = residenciaService.getAllByOwner();
+         
+        ResidenciaExcelExporter excelExporter = new ResidenciaExcelExporter(residencias);
+         
+        excelExporter.export(response);
+    }
 
 	
 	

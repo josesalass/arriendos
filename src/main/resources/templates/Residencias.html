@@ -43,7 +43,7 @@
         
 
         .row {
-            margin-bottom: 2em;
+            margin-bottom: 1em;
         }
 
         .col-4 {
@@ -127,17 +127,25 @@
             </div>
             <div class="col-2">
                 <a class="btn btn-info row justify-content-center" th:href="@{/residencia/create}"
-                    style="height: 4em; box-shadow:  20px 20px 17px -14px rgba(0,0,0,0.75);">
+                    style="height: 5em; box-shadow:  20px 20px 17px -14px rgba(0,0,0,0.75);">
                     <i class="fa-solid fa-house-chimney-medical"></i>
                     Nueva residencia
                 </a>
 
             </div>
 
-            
-
         </div>
 
+        <div class="row d-flex justify-content-end">
+            <div class="col-2">
+                <a class="btn btn-success row justify-content-center" th:href="@{/residencia/export/excel}"
+                    style="height: 5em; box-shadow:  20px 20px 17px -14px rgba(0,0,0,0.75);">
+                    <i class="fa-solid fa-file"></i>
+                    Descargar Reporte Excel
+                </a>
+
+            </div>
+        </div>
         
 
 
@@ -179,9 +187,9 @@
                             </tr>
                             <tr>
                                 <td class="list-group">
-                                    <li  th:if="${resi.reestriccion1}">No se aceptan mascotas</li>
+                                    <li  th:if="${resi.reestriccion1}">Solo hombres</li>
                                     <li  th:if="${resi.reestriccion2}">Solo mujeres</li>
-                                    <li  th:if="${resi.reestriccion3}">Baño compartido</li>
+                                    <li  th:if="${resi.reestriccion3}">Servicios básicos compartidos</li>
                                 </td>
                             </tr>
 
