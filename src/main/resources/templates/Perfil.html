@@ -82,11 +82,11 @@ body {
 			<div class="bg-white shadow rounded overflow-hidden">
 				<div class="px-4 pt-0 pb-4 cover">
 					<div class="media align-items-end profile-head" th:each="usuario : ${usuario}">
-						<div class="profile mr-3" >
+						<!-- <div class="profile mr-3" >
 							<img th:src="@{${'/assets/img/imagenesPerfiles/'+ usuario.id + '-' + usuario.img}}"
 								alt="..." width="130" class="rounded mb-2 img-thumbnail">
 						
-						</div>
+						</div> -->
 						<a th:Href="@{/usuario/editar/{id}(id=${usuario.id})}"
 					class="btn btn-info">Editar perfil</a>
 						<div class="media-body mb-5 text-white"
